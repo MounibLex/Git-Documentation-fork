@@ -8,46 +8,41 @@ function toggleNavSection(header) {
     section.classList.toggle('collapsed');
 }
 
-document.addEventListener('DOMContentLoaded', function() {
+// Update active navigation on scroll (global function)
+function updateActiveNav() {
     const navLinks = document.querySelectorAll('.nav-link');
     const sections = document.querySelectorAll('.doc-section');
+    let currentSection = '';
     
-    // Update active navigation on scroll
-    function updateActiveNav() {
-        let currentSection = '';
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
         
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.clientHeight;
-            
-            if (window.pageYOffset >= sectionTop - 100) {
-                currentSection = section.getAttribute('id');
-            }
-        });
-        
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href') === `#${currentSection}`) {
-                link.classList.add('active');
-            }
-        });
-    }
+        if (window.pageYOffset >= sectionTop - 100) {
+            currentSection = section.getAttribute('id');
+        }
+    });
+    
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${currentSection}`) {
+            link.classList.add('active');
+        }
+    });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize all navigation sections as collapsed
+    const navSections = document.querySelectorAll('.nav-section');
+    navSections.forEach(section => {
+        section.classList.add('collapsed');
+    });
+    
+    const navLinks = document.querySelectorAll('.nav-link');
     
     // Smooth scroll for navigation links
     navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href');
-            const targetSection = document.querySelector(targetId);
-            
-            if (targetSection) {
-                const offsetTop = targetSection.offsetTop - 20;
-                window.scrollTo({
-                    top: offsetTop,
-                    behavior: 'smooth'
-                });
-            }
-        });
+        link.addEventListener('click', handleNavClick);
     });
     
     // Update active nav on scroll
@@ -221,8 +216,19 @@ document.addEventListener('DOMContentLoaded', function() {
                 .then(html => {
                     placeholder.innerHTML = html;
                     
+                    // Re-attach navigation event listeners to new content
+                    const newNavLinks = document.querySelectorAll('.nav-link');
+                    newNavLinks.forEach(link => {
+                        // Remove existing listeners first
+                        link.removeEventListener('click', handleNavClick);
+                        // Add new listener
+                        link.addEventListener('click', handleNavClick);
+                    });
+                    
                     // Update navigation after loading content
-                    updateActiveNav();
+                    setTimeout(() => {
+                        updateActiveNav();
+                    }, 100);
                 })
                 .catch(error => {
                     console.error(`Failed to load section from ${section.url}:`, error);
@@ -239,6 +245,21 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
+
+// Navigation click handler function
+function handleNavClick(e) {
+    e.preventDefault();
+    const targetId = this.getAttribute('href');
+    const targetSection = document.querySelector(targetId);
+    
+    if (targetSection) {
+        const offsetTop = targetSection.offsetTop - 20;
+        window.scrollTo({
+            top: offsetTop,
+            behavior: 'smooth'
+        });
+    }
+}
 
 // ========================================
 // PRINT STYLES (Optional)

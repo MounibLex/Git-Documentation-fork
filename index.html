@@ -19,7 +19,7 @@
             </div>
         </div>
         <nav class="sidebar-nav">
-            <div class="nav-section">
+            <div class="nav-section collapsed">
                 <div class="nav-section-header" onclick="toggleNavSection(this)">
                     <span class="nav-section-icon">📚</span>
                     <span class="nav-section-title">Intérêt de la gestion de version & outils existants de g.v</span>
@@ -66,16 +66,45 @@
                         <span class="nav-icon">🚀</span>
                         <span>Prochaines Étapes</span>
                     </a>
-                    
-                    <!-- New collaborative sections -->
+                </div>
+            </div>
+
+            <!-- New Collaborative Sections -->
+            <div class="nav-section collapsed">
+                <div class="nav-section-header" onclick="toggleNavSection(this)">
+                    <span class="nav-section-icon">💾</span>
+                    <span class="nav-section-title">Installation Git</span>
+                    <span class="nav-section-toggle">▼</span>
+                </div>
+                <div class="nav-section-content">
                     <a href="#git-installation" class="nav-link">
                         <span class="nav-icon">💾</span>
                         <span>Installation Git</span>
                     </a>
+                </div>
+            </div>
+
+            <div class="nav-section collapsed">
+                <div class="nav-section-header" onclick="toggleNavSection(this)">
+                    <span class="nav-section-icon">⌨️</span>
+                    <span class="nav-section-title">Commandes de Base</span>
+                    <span class="nav-section-toggle">▼</span>
+                </div>
+                <div class="nav-section-content">
                     <a href="#basic-commands" class="nav-link">
                         <span class="nav-icon">⌨️</span>
                         <span>Commandes de Base</span>
                     </a>
+                </div>
+            </div>
+
+            <div class="nav-section collapsed">
+                <div class="nav-section-header" onclick="toggleNavSection(this)">
+                    <span class="nav-section-icon">🌿</span>
+                    <span class="nav-section-title">Branches & Fusion</span>
+                    <span class="nav-section-toggle">▼</span>
+                </div>
+                <div class="nav-section-content">
                     <a href="#branching-tutorial" class="nav-link">
                         <span class="nav-icon">🌿</span>
                         <span>Branches & Fusion</span>
