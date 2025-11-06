@@ -203,6 +203,44 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // ========================================
+// DYNAMIC CONTENT LOADER FOR COLLABORATION
+// ========================================
+
+document.addEventListener('DOMContentLoaded', function() {
+    const sectionsToLoad = [
+        { id: 'git-installation-placeholder', url: 'sections/git-installation.html' },
+        { id: 'basic-commands-placeholder', url: 'sections/basic-commands.html' },
+        { id: 'branching-tutorial-placeholder', url: 'sections/branching-tutorial.html' }
+    ];
+
+    sectionsToLoad.forEach(section => {
+        const placeholder = document.getElementById(section.id);
+        if (placeholder) {
+            fetch(section.url)
+                .then(response => response.ok ? response.text() : Promise.reject('File not found'))
+                .then(html => {
+                    placeholder.innerHTML = html;
+                    
+                    // Update navigation after loading content
+                    updateActiveNav();
+                })
+                .catch(error => {
+                    console.error(`Failed to load section from ${section.url}:`, error);
+                    placeholder.innerHTML = `
+                        <div class="alert alert-error">
+                            <div class="alert-icon">❌</div>
+                            <div class="alert-content">
+                                <strong>Erreur de chargement</strong>
+                                <p>Impossible de charger le contenu depuis ${section.url}</p>
+                            </div>
+                        </div>
+                    `;
+                });
+        }
+    });
+});
+
+// ========================================
 // PRINT STYLES (Optional)
 // ========================================
 
