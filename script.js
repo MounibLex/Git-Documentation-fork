@@ -15,14 +15,20 @@ function updateActiveNav() {
     const sections = document.querySelectorAll('.doc-section');
     let currentSection = '';
     
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        
-        if (window.pageYOffset >= sectionTop - 100) {
-            currentSection = section.getAttribute('id');
-        }
-    });
+    // Only update active nav if we're not at the very top of the page
+    if (window.pageYOffset > 50) {
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            
+            if (window.pageYOffset >= sectionTop - 100) {
+                currentSection = section.getAttribute('id');
+            }
+        });
+    } else {
+        // If we're at the top, default to the introduction section
+        currentSection = 'introduction';
+    }
     
     navLinks.forEach(link => {
         link.classList.remove('active');
@@ -33,6 +39,9 @@ function updateActiveNav() {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
+    // Ensure page starts at the top on refresh
+    window.scrollTo(0, 0);
+    
     // Initialize all navigation sections as collapsed
     const navSections = document.querySelectorAll('.nav-section');
     navSections.forEach(section => {
@@ -49,8 +58,25 @@ document.addEventListener('DOMContentLoaded', function() {
     // Update active nav on scroll
     window.addEventListener('scroll', updateActiveNav);
     
-    // Initial call
-    updateActiveNav();
+    // Initial call - set introduction as active by default
+    setTimeout(() => {
+        updateActiveNav();
+    }, 100);
+});
+
+// ========================================
+// ENSURE PAGE STARTS AT TOP ON REFRESH
+// ========================================
+
+window.addEventListener('beforeunload', function() {
+    window.scrollTo(0, 0);
+});
+
+window.addEventListener('load', function() {
+    // Force scroll to top after everything is loaded
+    setTimeout(() => {
+        window.scrollTo(0, 0);
+    }, 50);
 });
 
 // ========================================
@@ -211,41 +237,51 @@ document.addEventListener('DOMContentLoaded', function() {
         
     ];
 
+    // If fetch isn't available, bail out gracefully.
+    if (!window.fetch) {
+        console.warn('Fetch API not available; dynamic sections will not be loaded.');
+        return;
+    }
+
     sectionsToLoad.forEach(section => {
         const placeholder = document.getElementById(section.id);
-        if (placeholder) {
-            fetch(section.url)
-                .then(response => response.ok ? response.text() : Promise.reject('File not found'))
-                .then(html => {
-                    placeholder.innerHTML = html;
-                    
-                    // Re-attach navigation event listeners to new content
-                    const newNavLinks = document.querySelectorAll('.nav-link');
-                    newNavLinks.forEach(link => {
-                        // Remove existing listeners first
-                        link.removeEventListener('click', handleNavClick);
-                        // Add new listener
-                        link.addEventListener('click', handleNavClick);
-                    });
-                    
-                    // Update navigation after loading content
-                    setTimeout(() => {
-                        updateActiveNav();
-                    }, 100);
-                })
-                .catch(error => {
-                    console.error(`Failed to load section from ${section.url}:`, error);
-                    placeholder.innerHTML = `
-                        <div class="alert alert-error">
-                            <div class="alert-icon">❌</div>
-                            <div class="alert-content">
-                                <strong>Erreur de chargement</strong>
-                                <p>Impossible de charger le contenu depuis ${section.url}</p>
-                            </div>
-                        </div>
-                    `;
+        if (!placeholder) return;
+
+        fetch(section.url)
+            .then(response => {
+                if (!response.ok) throw new Error('File not found');
+                return response.text();
+            })
+            .then(html => {
+                // Insert the loaded HTML into the placeholder
+                placeholder.innerHTML = html;
+                
+                // Attach click listeners only to links inside the newly loaded content
+                const newNavLinks = placeholder.querySelectorAll('.nav-link');
+                newNavLinks.forEach(link => {
+                    // Remove any inline/duplicate listeners by replacing the node, then add the handler
+                    const clean = link.cloneNode(true);
+                    link.parentNode.replaceChild(clean, link);
+                    clean.addEventListener('click', handleNavClick);
                 });
-        }
+                
+                // Update navigation after loading content
+                setTimeout(() => {
+                    updateActiveNav();
+                }, 100);
+            })
+            .catch(error => {
+                console.error(`Failed to load section from ${section.url}:`, error);
+                placeholder.innerHTML = `
+                    <div class="alert alert-error">
+                        <div class="alert-icon">❌</div>
+                        <div class="alert-content">
+                            <strong>Erreur de chargement</strong>
+                            <p>Impossible de charger le contenu depuis ${section.url}</p>
+                        </div>
+                    </div>
+                `;
+            });
     });
 });
 
