@@ -22,7 +22,7 @@ Cette documentation interactive et moderne explique **l'importance de la gestion
 
 ## 🌐 Démo en Ligne
 
-👉 **[Voir la documentation live](https://litakram.github.io/Cours_Documentation_git_github_gitlab/)**
+👉 **[Voir la documentation live]([https://documentation-git-approche-agile.surge.sh])**
 
 ## 📋 Table des Matières
 
