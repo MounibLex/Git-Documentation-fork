@@ -1,0 +1,564 @@
+<!-- Git Conflicts Management Section -->
+<section id="git-conflicts-intro" class="doc-section">
+    <h2>Gestion des Conflits Git en Local</h2>
+    
+    <p class="lead">Les conflits Git sont l'une des parties les plus redoutées du développement collaboratif, mais ils ne devraient pas l'être. <strong>Git n'est pas psychique — il est logique</strong>. Quand deux branches modifient le même code de manières différentes, Git s'arrête et vous demande de choisir. C'est une protection, pas un problème.</p>
+
+    <div class="alert alert-info">
+        <div class="alert-icon">🧠</div>
+        <div class="alert-content">
+            <strong>Changement de Perspective</strong>
+            <p>Un conflit Git n'est pas un échec — c'est Git qui vous protège de la perte de code en vous demandant de prendre une décision consciente.</p>
+        </div>
+    </div>
+
+    <h3>Les 4 Types de Conflits Principaux</h3>
+
+    <div class="card-grid">
+        <div class="card">
+            <div class="card-header">
+                <span class="card-icon">🔀</span>
+                <h3>Conflit de Fusion Standard</h3>
+            </div>
+            <p>Deux branches modifient la même ligne de code dans le même fichier. Le plus courant et le plus facile à résoudre.</p>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <span class="card-icon">🔄</span>
+                <h3>Conflit de Rebase</h3>
+            </div>
+            <p>Survient lors de la réécriture d'historique. Git rejoue les commits un par un et peut s'arrêter à chaque conflit.</p>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <span class="card-icon">🗑️</span>
+                <h3>Conflit Suppression/Modification</h3>
+            </div>
+            <p>Une branche supprime un fichier pendant qu'une autre le modifie. Git vous demande : garder ou supprimer ?</p>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <span class="card-icon">⚠️</span>
+                <h3>Changements Non Committés</h3>
+            </div>
+            <p>Git refuse de continuer si vous avez des modifications non sauvegardées qui seraient écrasées.</p>
+        </div>
+    </div>
+
+    <div class="callout">
+        <strong>Approche Pédagogique</strong>
+        <p>Nous allons simuler chaque type de conflit étape par étape, puis apprendre à les résoudre méthodiquement. Chaque conflit a sa logique et sa solution.</p>
+    </div>
+</section>
+
+<!-- Standard Merge Conflict -->
+<section id="standard-merge-conflict" class="doc-section">
+    <h2>Le Conflit de Fusion Standard</h2>
+    
+    <p class="lead">Le conflit le plus fréquent : <strong>deux branches modifient la même ligne de code</strong>. Git ne peut pas deviner quelle version garder, alors il vous demande de choisir manuellement.</p>
+
+    <h3>📋 Simulation Étape par Étape</h3>
+
+    <div class="numbered-list">
+        <ol>
+            <li>
+                <strong>Initialiser le dépôt de test</strong>
+                <div class="code-block">
+                    <div class="code-header">Terminal</div>
+                    <pre><code>mkdir merge_demo && cd merge_demo && git init</code></pre>
+                </div>
+                <p>Créer un nouveau dépôt pour nos tests.</p>
+            </li>
+
+            <li>
+                <strong>Créer le fichier de base</strong>
+                <div class="code-block">
+                    <div class="code-header">Terminal</div>
+                    <pre><code>echo 'Base Content' > file.txt && git add . && git commit -m 'Initial commit'</code></pre>
+                </div>
+                <p>Établir une base commune avant la divergence.</p>
+            </li>
+
+            <li>
+                <strong>Créer et modifier sur la branche feature</strong>
+                <div class="code-block">
+                    <div class="code-header">Terminal</div>
+                    <pre><code>git checkout -b feature && echo 'Feature Change' > file.txt && git commit -am 'Change in feature'</code></pre>
+                </div>
+                <p>La branche feature modifie le fichier d'une façon.</p>
+            </li>
+
+            <li>
+                <strong>Modifier différemment sur main</strong>
+                <div class="code-block">
+                    <div class="code-header">Terminal</div>
+                    <pre><code>git checkout main && echo 'Main Change' > file.txt && git commit -am 'Change in main'</code></pre>
+                </div>
+                <p>La branche main modifie le MÊME fichier différemment.</p>
+            </li>
+
+            <li>
+                <strong>Déclencher le conflit</strong>
+                <div class="code-block">
+                    <div class="code-header">Terminal</div>
+                    <pre><code>git merge feature</code></pre>
+                </div>
+                <p><strong>BOOM!</strong> Git s'arrête avec un message de conflit.</p>
+            </li>
+        </ol>
+    </div>
+
+    <div class="alert alert-warning">
+        <div class="alert-icon">⚠️</div>
+        <div class="alert-content">
+            <strong>Message de Conflit Typique</strong>
+            <pre style="margin: 0; background: none; padding: 0;">Auto-merging file.txt
+CONFLICT (content): Merge conflict in file.txt
+Automatic merge failed; fix conflicts and then commit the result.</pre>
+        </div>
+    </div>
+
+    <h3>🔧 Processus de Résolution</h3>
+
+    <div class="feature-list">
+        <div class="feature-item">
+            <div class="feature-icon">1️⃣</div>
+            <div class="feature-content">
+                <h4>Identifier les fichiers en conflit</h4>
+                <div class="code-block">
+                    <div class="code-header">Terminal</div>
+                    <pre><code>git status</code></pre>
+                </div>
+                <p>Git liste les fichiers avec des conflits non résolus.</p>
+            </div>
+        </div>
+
+        <div class="feature-item">
+            <div class="feature-icon">2️⃣</div>
+            <div class="feature-content">
+                <h4>Examiner les marqueurs de conflit</h4>
+                <div class="code-block">
+                    <div class="code-header">Contenu de file.txt</div>
+                    <pre><code><<<<<<< HEAD
+Main Change
+=======
+Feature Change
+>>>>>>> feature</code></pre>
+                </div>
+                <p><code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code> = Version actuelle, <code>=======</code> = Séparateur, <code>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</code> = Version entrante</p>
+            </div>
+        </div>
+
+        <div class="feature-item">
+            <div class="feature-icon">3️⃣</div>
+            <div class="feature-content">
+                <h4>Éditer et choisir</h4>
+                <div class="code-block">
+                    <div class="code-header">Résolution manuelle</div>
+                    <pre><code># Supprimez les marqueurs et choisissez le contenu
+# Option A: Garder la version main
+Main Change
+
+# Option B: Garder la version feature  
+Feature Change
+
+# Option C: Combiner les deux
+Main Change
+Feature Change</code></pre>
+                </div>
+                <p>Supprimez les marqueurs <code>&lt;&lt;&lt;</code>, <code>===</code>, <code>&gt;&gt;&gt;</code> et gardez le code voulu.</p>
+            </div>
+        </div>
+
+        <div class="feature-item">
+            <div class="feature-icon">4️⃣</div>
+            <div class="feature-content">
+                <h4>Marquer comme résolu</h4>
+                <div class="code-block">
+                    <div class="code-header">Terminal</div>
+                    <pre><code>git add file.txt</code></pre>
+                </div>
+                <p>Dire à Git que ce fichier est maintenant résolu.</p>
+            </div>
+        </div>
+
+        <div class="feature-item">
+            <div class="feature-icon">5️⃣</div>
+            <div class="feature-content">
+                <h4>Finaliser la fusion</h4>
+                <div class="code-block">
+                    <div class="code-header">Terminal</div>
+                    <pre><code>git commit</code></pre>
+                </div>
+                <p>Git créé automatiquement un commit de fusion avec un message par défaut.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Rebase Conflict -->
+<section id="rebase-conflict" class="doc-section">
+    <h2>Le Conflit de Rebase</h2>
+    
+    <p class="lead">Contrairement à une fusion, un rebase <strong>rejoue les commits un par un</strong>. Si un conflit survient, Git s'arrête à ce commit spécifique et attend votre intervention avant de continuer.</p>
+
+    <div class="alert alert-info">
+        <div class="alert-icon">🔄</div>
+        <div class="alert-content">
+            <strong>Différence Cruciale</strong>
+            <p>Merge = Créer un nouveau commit qui combine tout<br>
+            Rebase = Réécrire l'historique en rejouant chaque commit individuellement</p>
+        </div>
+    </div>
+
+    <h3>📋 Simulation du Conflit de Rebase</h3>
+
+    <div class="numbered-list">
+        <ol>
+            <li>
+                <strong>Préparer l'environnement</strong>
+                <div class="code-block">
+                    <div class="code-header">Terminal</div>
+                    <pre><code>git init rebase_demo && cd rebase_demo</code></pre>
+                </div>
+            </li>
+
+            <li>
+                <strong>Commit initial</strong>
+                <div class="code-block">
+                    <div class="code-header">Terminal</div>
+                    <pre><code>echo 'Line 1' > script.py && git add . && git commit -m 'Init'</code></pre>
+                </div>
+            </li>
+
+            <li>
+                <strong>Travail sur la branche feature</strong>
+                <div class="code-block">
+                    <div class="code-header">Terminal</div>
+                    <pre><code>git checkout -b feature && echo 'Line 1 modified by Feature' > script.py && git commit -am 'Feature work'</code></pre>
+                </div>
+            </li>
+
+            <li>
+                <strong>Évolution parallèle de main</strong>
+                <div class="code-block">
+                    <div class="code-header">Terminal</div>
+                    <pre><code>git checkout main && echo 'Line 1 modified by Main' > script.py && git commit -am 'Main update'</code></pre>
+                </div>
+            </li>
+
+            <li>
+                <strong>Déclencher le conflit de rebase</strong>
+                <div class="code-block">
+                    <div class="code-header">Terminal</div>
+                    <pre><code>git checkout feature && git rebase main</code></pre>
+                </div>
+                <p>Git s'arrête : "CONFLICT (content): Merge conflict in script.py"</p>
+            </li>
+        </ol>
+    </div>
+
+    <h3>🔧 Résolution Spécifique au Rebase</h3>
+
+    <div class="alert alert-warning">
+        <div class="alert-icon">⚠️</div>
+        <div class="alert-content">
+            <strong>ATTENTION : Différence Critique</strong>
+            <p>Après résolution d'un conflit de rebase, utilisez <code>git rebase --continue</code> et NON <code>git commit</code> !</p>
+        </div>
+    </div>
+
+    <div class="feature-list">
+        <div class="feature-item">
+            <div class="feature-icon">1️⃣</div>
+            <div class="feature-content">
+                <h4>Vérifier l'état</h4>
+                <div class="code-block">
+                    <div class="code-header">Terminal</div>
+                    <pre><code>git status</code></pre>
+                </div>
+                <p>Vous êtes dans un état "detached HEAD" pendant le rebase.</p>
+            </div>
+        </div>
+
+        <div class="feature-item">
+            <div class="feature-icon">2️⃣</div>
+            <div class="feature-content">
+                <h4>Résoudre le conflit</h4>
+                <p>Ouvrez <code>script.py</code> et supprimez les marqueurs comme dans un merge normal.</p>
+            </div>
+        </div>
+
+        <div class="feature-item">
+            <div class="feature-icon">3️⃣</div>
+            <div class="feature-content">
+                <h4>Ajouter les fichiers résolus</h4>
+                <div class="code-block">
+                    <div class="code-header">Terminal</div>
+                    <pre><code>git add script.py</code></pre>
+                </div>
+            </div>
+        </div>
+
+        <div class="feature-item">
+            <div class="feature-icon">4️⃣</div>
+            <div class="feature-content">
+                <h4>Continuer le rebase</h4>
+                <div class="code-block">
+                    <div class="code-header">Terminal</div>
+                    <pre><code>git rebase --continue</code></pre>
+                </div>
+                <p><strong>Pas de git commit !</strong> Le rebase gère cela automatiquement.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="callout">
+        <strong>Options de Sortie</strong>
+        <p>Si le rebase devient trop complexe :<br>
+        • <code>git rebase --abort</code> = Annuler et revenir à l'état initial<br>
+        • <code>git rebase --skip</code> = Ignorer ce commit (DANGEREUX)</p>
+    </div>
+</section>
+
+<!-- Delete/Modify Conflict -->
+<section id="delete-modify-conflict" class="doc-section">
+    <h2>Le Conflit Suppression/Modification</h2>
+    
+    <p class="lead">Un scénario délicat : <strong>une branche supprime un fichier pendant qu'une autre le modifie</strong>. Git ne peut pas décider automatiquement et vous demande : "Faut-il garder les nouvelles modifications ou respecter la suppression ?"</p>
+
+    <h3>📋 Créer le Conflit Delete/Modify</h3>
+
+    <div class="numbered-list">
+        <ol>
+            <li>
+                <strong>Configuration de base</strong>
+                <div class="code-block">
+                    <div class="code-header">Terminal</div>
+                    <pre><code>git init delete_demo && cd delete_demo</code></pre>
+                </div>
+            </li>
+
+            <li>
+                <strong>Créer un fichier avec du contenu</strong>
+                <div class="code-block">
+                    <div class="code-header">Terminal</div>
+                    <pre><code>echo 'Important Data' > data.txt && git add . && git commit -m 'Add data'</code></pre>
+                </div>
+            </li>
+
+            <li>
+                <strong>Branche A : Supprimer le fichier</strong>
+                <div class="code-block">
+                    <div class="code-header">Terminal</div>
+                    <pre><code>git checkout -b cleaner && git rm data.txt && git commit -m 'Remove obsolete file'</code></pre>
+                </div>
+                <p>La branche "cleaner" considère le fichier inutile et le supprime.</p>
+            </li>
+
+            <li>
+                <strong>Branche B : Améliorer le fichier</strong>
+                <div class="code-block">
+                    <div class="code-header">Terminal</div>
+                    <pre><code>git checkout main && echo 'New Important Data' >> data.txt && git commit -am 'Update data with new info'</code></pre>
+                </div>
+                <p>Pendant ce temps, main améliore le contenu du fichier.</p>
+            </li>
+
+            <li>
+                <strong>Fusion = Conflit inévitable</strong>
+                <div class="code-block">
+                    <div class="code-header">Terminal</div>
+                    <pre><code>git merge cleaner</code></pre>
+                </div>
+                <p>Message : "CONFLICT (modify/delete): data.txt deleted by cleaner and modified by HEAD."</p>
+            </li>
+        </ol>
+    </div>
+
+    <h3>🔧 Résoudre le Conflit Delete/Modify</h3>
+
+    <div class="comparison-grid">
+        <div class="comparison-item">
+            <h4>📊 État du Conflit</h4>
+            <div class="code-block">
+                <div class="code-header">git status</div>
+                <pre><code>deleted by them: data.txt
+both modified:   data.txt</code></pre>
+            </div>
+            <p>Git montre que le fichier est à la fois supprimé et modifié.</p>
+        </div>
+
+        <div class="comparison-item">
+            <h4>✅ Décisions Possibles</h4>
+            <ul class="check-list">
+                <li><strong>Garder le fichier</strong> avec ses modifications</li>
+                <li><strong>Respecter la suppression</strong> et perdre les modifications</li>
+                <li><strong>Créer une nouvelle version</strong> avec un nom différent</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="feature-list">
+        <div class="feature-item">
+            <div class="feature-icon">📁</div>
+            <div class="feature-content">
+                <h4>Option A : Garder le Fichier</h4>
+                <div class="code-block">
+                    <div class="code-header">Terminal</div>
+                    <pre><code>git add data.txt
+git commit</code></pre>
+                </div>
+                <p>Vous décidez que les modifications sont importantes et gardez le fichier.</p>
+            </div>
+        </div>
+
+        <div class="feature-item">
+            <div class="feature-icon">🗑️</div>
+            <div class="feature-content">
+                <h4>Option B : Confirmer la Suppression</h4>
+                <div class="code-block">
+                    <div class="code-header">Terminal</div>
+                    <pre><code>git rm data.txt
+git commit</code></pre>
+                </div>
+                <p>Vous confirmez que le fichier était effectivement obsolète.</p>
+            </div>
+        </div>
+
+        <div class="feature-item">
+            <div class="feature-icon">📝</div>
+            <div class="feature-content">
+                <h4>Option C : Compromis Créatif</h4>
+                <div class="code-block">
+                    <div class="code-header">Terminal</div>
+                    <pre><code>git rm data.txt
+echo 'New Important Data' > important_data.txt
+git add important_data.txt
+git commit</code></pre>
+                </div>
+                <p>Respecter la suppression mais sauvegarder le contenu ailleurs.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Uncommitted Changes -->
+<section id="uncommitted-changes" class="doc-section">
+    <h2>Changements Non Committés : La Protection Git</h2>
+    
+    <p class="lead">Ce n'est pas techniquement un conflit, mais <strong>une protection intelligente de Git</strong>. Quand vous avez des modifications non sauvegardées qui seraient écrasées par une opération, Git refuse de continuer.</p>
+
+    <div class="alert alert-success">
+        <div class="alert-icon">🛡️</div>
+        <div class="alert-content">
+            <strong>Git Vous Protège</strong>
+            <p>Ce message d'erreur n'est pas un problème — c'est Git qui empêche la perte accidentelle de votre travail en cours.</p>
+        </div>
+    </div>
+
+    <h3>📋 Simuler le Blocage</h3>
+
+    <div class="numbered-list">
+        <ol>
+            <li>
+                <strong>Créer l'environnement</strong>
+                <div class="code-block">
+                    <div class="code-header">Terminal</div>
+                    <pre><code>git init dirty_demo && cd dirty_demo</code></pre>
+                </div>
+            </li>
+
+            <li>
+                <strong>Fichier initial</strong>
+                <div class="code-block">
+                    <div class="code-header">Terminal</div>
+                    <pre><code>echo 'Version 1' > config.txt && git add . && git commit -m 'v1'</code></pre>
+                </div>
+            </li>
+
+            <li>
+                <strong>Branche avec modification différente</strong>
+                <div class="code-block">
+                    <div class="code-header">Terminal</div>
+                    <pre><code>git checkout -b update-branch && echo 'Version 2' > config.txt && git commit -am 'v2'</code></pre>
+                </div>
+            </li>
+
+            <li>
+                <strong>Modifications non committées</strong>
+                <div class="code-block">
+                    <div class="code-header">Terminal</div>
+                    <pre><code>git checkout main && echo 'Work in progress...' > config.txt</code></pre>
+                </div>
+                <p><strong>Crucial :</strong> Ne pas faire <code>git commit</code> = état "dirty"</p>
+            </li>
+
+            <li>
+                <strong>Git bloque l'opération</strong>
+                <div class="code-block">
+                    <div class="code-header">Terminal</div>
+                    <pre><code>git merge update-branch</code></pre>
+                </div>
+                <p>Erreur : "Your local changes to 'config.txt' would be overwritten by merge."</p>
+            </li>
+        </ol>
+    </div>
+
+    <h3>🔧 Trois Solutions Selon le Contexte</h3>
+
+    <div class="feature-list">
+        <div class="feature-item">
+            <div class="feature-icon">💾</div>
+            <div class="feature-content">
+                <h4>Solution 1 : Sauvegarder le Travail</h4>
+                <div class="code-block">
+                    <div class="code-header">Terminal</div>
+                    <pre><code>git add .
+git commit -m "Work in progress - will merge next"
+git merge update-branch</code></pre>
+                </div>
+                <p><strong>Quand :</strong> Votre travail en cours est important et doit être conservé.</p>
+            </div>
+        </div>
+
+        <div class="feature-item">
+            <div class="feature-icon">📦</div>
+            <div class="feature-content">
+                <h4>Solution 2 : Stash Temporaire</h4>
+                <div class="code-block">
+                    <div class="code-header">Terminal</div>
+                    <pre><code>git stash
+git merge update-branch
+git stash pop  # Récupérer le travail plus tard</code></pre>
+                </div>
+                <p><strong>Quand :</strong> Vous voulez fusionner maintenant et reprendre votre travail après.</p>
+            </div>
+        </div>
+
+        <div class="feature-item">
+            <div class="feature-icon">⚠️</div>
+            <div class="feature-content">
+                <h4>Solution 3 : Abandonner les Modifications</h4>
+                <div class="code-block">
+                    <div class="code-header">Terminal</div>
+                    <pre><code>git restore config.txt
+# ou git checkout -- config.txt (ancienne syntaxe)
+git merge update-branch</code></pre>
+                </div>
+                <p><strong>⚠️ DANGER :</strong> Cette option supprime définitivement votre travail non committé !</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="alert alert-warning">
+        <div class="alert-icon">🎯</div>
+        <div class="alert-content">
+            <strong>Règle d'Or</strong>
+            <p>Committez souvent, même si ce n'est pas parfait. Un commit imparfait vaut mieux qu'un travail perdu. Vous pouvez toujours amender avec <code>git commit --amend</code>.</p>
+        </div>
+    </div>
+</section>
