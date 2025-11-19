@@ -1,0 +1,581 @@
+<!-- Git, Remote Repositories & Platforms Section -->
+<section id="git-remote-intro" class="doc-section">
+    <h2>Qu'est-ce que Git ?</h2>
+    
+    <p class="lead">Git est un <strong>logiciel de gestion de versions</strong> (version control system) qui fonctionne localement sur votre ordinateur. C'est l'outil fondamental qui permet de suivre et gérer l'évolution de vos projets de développement.</p>
+
+    <div class="alert alert-info">
+        <div class="alert-icon">📚</div>
+        <div class="alert-content">
+            <strong>Analogie Simple</strong>
+            <p>Imaginez écrire un livre avec plusieurs amis : Git vous permet de garder l'historique, travailler ensemble et revenir en arrière si besoin, sans jamais perdre le travail de personne.</p>
+        </div>
+    </div>
+
+    <h3>Les Quatre Missions Principales de Git</h3>
+
+    <div class="feature-list">
+        <div class="feature-item">
+            <div class="feature-icon">📊</div>
+            <div class="feature-content">
+                <h4>Suivre les Changements</h4>
+                <p>Git enregistre chaque modification dans votre projet, créant un historique détaillé de l'évolution de votre code.</p>
+            </div>
+        </div>
+
+        <div class="feature-item">
+            <div class="feature-icon">👥</div>
+            <div class="feature-content">
+                <h4>Collaboration Sans Conflits</h4>
+                <p>Plusieurs développeurs peuvent travailler simultanément sur le même projet sans écraser mutuellement leur travail.</p>
+            </div>
+        </div>
+
+        <div class="feature-item">
+            <div class="feature-icon">⏪</div>
+            <div class="feature-content">
+                <h4>Retour en Arrière</h4>
+                <p>Revenez à n'importe quelle version antérieure de votre projet en quelques secondes si quelque chose ne fonctionne plus.</p>
+            </div>
+        </div>
+
+        <div class="feature-item">
+            <div class="feature-icon">🔀</div>
+            <div class="feature-content">
+                <h4>Fusion Intelligente</h4>
+                <p>Git peut automatiquement fusionner le travail de plusieurs développeurs, même s'ils ont modifié les mêmes fichiers.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="callout">
+        <strong>Concept Clé : Le Dépôt Local</strong>
+        <p>Git fonctionne d'abord sur votre ordinateur — c'est ce qu'on appelle un <strong>dépôt local</strong> (local repository). Vous pouvez utiliser Git sans Internet, juste sur votre machine.</p>
+    </div>
+</section>
+
+<!-- Local vs Remote Repositories -->
+<section id="local-vs-remote" class="doc-section">
+    <h2>Dépôt Local vs Dépôt Distant</h2>
+    
+    <p class="lead">Comprendre la différence entre ces deux concepts est <strong>essentiel</strong> pour maîtriser Git dans un contexte collaboratif moderne.</p>
+
+    <div class="comparison-grid">
+        <div class="comparison-item">
+            <h4>🖥️ Dépôt Local</h4>
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">💻</span>
+                    <h3>Sur Votre PC avec Git</h3>
+                </div>
+                <ul class="check-list">
+                    <li>Contient votre copie de travail du projet</li>
+                    <li>Stocke tout l'historique des modifications</li>
+                    <li>Modifications visibles uniquement par vous</li>
+                    <li>Fonctionne même sans connexion Internet</li>
+                    <li>Permet commits, branches, merges en local</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="comparison-item">
+            <h4>🌐 Dépôt Distant</h4>
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-icon">☁️</span>
+                    <h3>Sur GitHub/GitLab</h3>
+                </div>
+                <ul class="check-list">
+                    <li>Version du projet stockée sur un serveur en ligne</li>
+                    <li>Accessible à toute l'équipe</li>
+                    <li>Sert à partager les modifications</li>
+                    <li>Point de synchronisation central</li>
+                    <li>Sauvegarde en ligne du projet</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <h3>Le Workflow Typique</h3>
+
+    <div class="timeline">
+        <div class="timeline-item">
+            <div class="timeline-marker">1️⃣</div>
+            <div class="timeline-content">
+                <h4>Travail Local</h4>
+                <p>Vous modifiez votre code, créez des commits, testez sur votre machine.</p>
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-marker">2️⃣</div>
+            <div class="timeline-content">
+                <h4>Push vers Distant</h4>
+                <p>Vous envoyez vos changements vers le dépôt distant (GitHub/GitLab).</p>
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-marker">3️⃣</div>
+            <div class="timeline-content">
+                <h4>Synchronisation Équipe</h4>
+                <p>Vos collègues récupèrent vos changements avec <code>git pull</code>.</p>
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-marker">4️⃣</div>
+            <div class="timeline-content">
+                <h4>Cycle Continu</h4>
+                <p>Le processus se répète : chacun contribue et synchronise en permanence.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="alert alert-success">
+        <div class="alert-icon">💡</div>
+        <div class="alert-content">
+            <strong>Insight Professionnel</strong>
+            <p>Le dépôt local vous donne l'autonomie, le dépôt distant permet la collaboration. Les deux sont complémentaires et indispensables.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Platforms Comparison -->
+<section id="platforms-comparison" class="doc-section">
+    <h2>GitHub vs GitLab : Bataille des Plateformes</h2>
+    
+    <p class="lead">GitHub et GitLab sont les deux géants qui <strong>hébergent des dépôts distants</strong> et offrent une interface web complète pour collaborer sur le code. Mais ils ont des philosophies différentes.</p>
+
+    <div class="platform-comparison">
+        <div class="platform-card">
+            <h3>
+                <span class="platform-icon">🐙</span>
+                GitHub
+            </h3>
+            <div class="badge badge-success">Focus : Collaboration & Communauté</div>
+            
+            <p><strong>Plateforme centrée sur le partage de code et la collaboration</strong></p>
+            
+            <h4>Forces Principales</h4>
+            <ul class="check-list">
+                <li><strong>Interface simple et rapide</strong> — Expérience utilisateur optimisée</li>
+                <li><strong>Communauté immense</strong> — Plus de 100M de développeurs actifs</li>
+                <li><strong>Intégration facile</strong> avec des milliers d'outils tiers</li>
+                <li><strong>Idéal pour l'open source</strong> — Écosystème de projets publics</li>
+                <li><strong>GitHub Actions</strong> — CI/CD intégré et puissant</li>
+                <li><strong>Documentation excellente</strong> — Ressources d'apprentissage</li>
+            </ul>
+
+            <div class="callout">
+                <strong>Cas d'Usage Typique</strong>
+                <p>Projets open source, startups, développeurs individuels, communautés de développement</p>
+            </div>
+        </div>
+
+        <div class="platform-card">
+            <h3>
+                <span class="platform-icon">🦊</span>
+                GitLab
+            </h3>
+            <div class="badge badge-warning">Focus : DevOps Complet & Entreprise</div>
+            
+            <p><strong>Plateforme orientée entreprise avec environnement tout-en-un</strong></p>
+            
+            <h4>Forces Principales</h4>
+            <ul class="check-list">
+                <li><strong>CI/CD intégré nativement</strong> — Pipelines avancés inclus</li>
+                <li><strong>Contrôle des permissions</strong> — Gestion fine des accès</li>
+                <li><strong>Auto-hébergement possible</strong> — Déployez sur vos serveurs</li>
+                <li><strong>Idéal pour entreprises</strong> — Sécurité et conformité</li>
+                <li><strong>Outils intégrés</strong> — Issue tracking, wiki, registry</li>
+                <li><strong>Planning et monitoring</strong> — Gestion de projet avancée</li>
+            </ul>
+
+            <div class="callout">
+                <strong>Cas d'Usage Typique</strong>
+                <p>Entreprises, projets privés, équipes DevOps, environnements réglementés</p>
+            </div>
+        </div>
+    </div>
+
+    <h3>Comparaison Directe</h3>
+
+    <div class="table-wrapper">
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>Critère</th>
+                    <th>🐙 GitHub</th>
+                    <th>🦊 GitLab</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Simplicité</strong></td>
+                    <td><span class="badge badge-success">Excellent</span></td>
+                    <td><span class="badge badge-warning">Bon</span></td>
+                </tr>
+                <tr>
+                    <td><strong>CI/CD Intégré</strong></td>
+                    <td><span class="badge badge-warning">GitHub Actions</span></td>
+                    <td><span class="badge badge-success">Natif & Puissant</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Communauté</strong></td>
+                    <td><span class="badge badge-success">Massive</span></td>
+                    <td><span class="badge badge-warning">Croissante</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Auto-hébergement</strong></td>
+                    <td><span class="badge badge-error">Non</span></td>
+                    <td><span class="badge badge-success">Oui</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Prix Entreprise</strong></td>
+                    <td><span class="badge badge-warning">Cher</span></td>
+                    <td><span class="badge badge-success">Compétitif</span></td>
+                </tr>
+                <tr>
+                    <td><strong>Open Source</strong></td>
+                    <td><span class="badge badge-success">Écosystème #1</span></td>
+                    <td><span class="badge badge-warning">En Croissance</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="alert alert-info">
+        <div class="alert-icon">🎯</div>
+        <div class="alert-content">
+            <strong>Conseil de Choix</strong>
+            <p><strong>GitHub</strong> si vous privilégiez la simplicité et la communauté. <strong>GitLab</strong> si vous voulez un écosystème DevOps complet et plus de contrôle.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Git-Platforms Link -->
+<section id="git-platforms-link" class="doc-section">
+    <h2>Le Lien entre Git, GitHub et GitLab</h2>
+    
+    <p class="lead">Il est crucial de comprendre que <strong>Git est l'outil, GitHub et GitLab sont les services</strong>. Cette distinction évite beaucoup de confusion chez les débutants.</p>
+
+    <div class="card-grid">
+        <div class="card">
+            <div class="card-header">
+                <span class="card-icon">⚙️</span>
+                <h3>Git : L'Outil Technique</h3>
+            </div>
+            <ul class="check-list">
+                <li>Gère les commits, branches et historique</li>
+                <li>Fonctionne entièrement en local</li>
+                <li>Logiciel libre créé par Linus Torvalds</li>
+                <li>Indépendant de toute plateforme en ligne</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <span class="card-icon">🌐</span>
+                <h3>GitHub/GitLab : Les Services</h3>
+            </div>
+            <ul class="check-list">
+                <li>Utilisent Git comme base</li>
+                <li>Ajoutent une interface web moderne</li>
+                <li>Fournissent outils de collaboration</li>
+                <li>Offrent automatisation et intégrations</li>
+            </ul>
+        </div>
+    </div>
+
+    <h3>Ce que les Plateformes Ajoutent à Git</h3>
+
+    <div class="feature-list">
+        <div class="feature-item">
+            <div class="feature-icon">👁️</div>
+            <div class="feature-content">
+                <h4>Interface Web Intuitive</h4>
+                <p>Visualisation du code, de l'historique et des branches directement dans le navigateur, sans ligne de commande.</p>
+            </div>
+        </div>
+
+        <div class="feature-item">
+            <div class="feature-icon">💬</div>
+            <div class="feature-content">
+                <h4>Outils de Collaboration</h4>
+                <p>Pull requests, code reviews, discussions, issues — tout pour faciliter le travail d'équipe.</p>
+            </div>
+        </div>
+
+        <div class="feature-item">
+            <div class="feature-icon">🤖</div>
+            <div class="feature-content">
+                <h4>Automatisation Avancée</h4>
+                <p>CI/CD, tests automatiques, déploiements, notifications — des workflows intelligents.</p>
+            </div>
+        </div>
+
+        <div class="feature-item">
+            <div class="feature-icon">📊</div>
+            <div class="feature-content">
+                <h4>Gestion de Projet</h4>
+                <p>Planification, suivi des tâches, métriques, documentation — vue d'ensemble du projet.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="code-block">
+        <div class="code-header">Relation Conceptuelle</div>
+        <pre><code>Git (local) ←→ Push/Pull ←→ GitHub/GitLab (distant) ←→ Équipe (synchronisée)</code></pre>
+    </div>
+
+    <div class="callout">
+        <strong>Point Clé</strong>
+        <p>GitHub et GitLab <strong>utilisent Git</strong>, mais ajoutent une interface web, des outils de collaboration, et parfois de l'automatisation avancée. Sans Git, ils n'existeraient pas.</p>
+    </div>
+</section>
+
+<!-- Remote Advantages -->
+<section id="remote-advantages" class="doc-section">
+    <h2>Avantages des Dépôts Distants</h2>
+    
+    <p class="lead">Les dépôts distants ne sont pas qu'une simple sauvegarde en ligne — ils sont <strong>essentiels pour le travail collaboratif moderne</strong> et transforment la façon dont les équipes développent des logiciels.</p>
+
+    <div class="feature-list">
+        <div class="feature-item">
+            <div class="feature-icon">👥</div>
+            <div class="feature-content">
+                <h4>Collaboration en Temps Réel</h4>
+                <p>Plusieurs développeurs peuvent travailler simultanément sur le même projet, avec synchronisation automatique des changements et résolution intelligente des conflits.</p>
+                <div class="code-block">
+                    <div class="code-header">Workflow Collaboratif</div>
+                    <pre><code>Développeur A → Push → Dépôt Distant → Pull → Développeur B</code></pre>
+                </div>
+            </div>
+        </div>
+
+        <div class="feature-item">
+            <div class="feature-icon">💾</div>
+            <div class="feature-content">
+                <h4>Sauvegarde Automatique</h4>
+                <p>Votre code est protégé contre les pannes de disque dur, les accidents et les catastrophes. L'historique complet est préservé dans le cloud.</p>
+                <div class="alert alert-success" style="margin-top: 0.5rem;">
+                    <div class="alert-icon">🛡️</div>
+                    <div class="alert-content">
+                        <strong>Redondance</strong>
+                        <p>GitHub et GitLab utilisent des centres de données distribués avec réplication multiple.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="feature-item">
+            <div class="feature-icon">🔗</div>
+            <div class="feature-content">
+                <h4>Partage et Accessibilité</h4>
+                <p>Partagez instantanément votre code avec des collègues, clients ou la communauté open source. Accès depuis n'importe quel ordinateur connecté.</p>
+            </div>
+        </div>
+
+        <div class="feature-item">
+            <div class="feature-icon">📈</div>
+            <div class="feature-content">
+                <h4>Historique Centralisé</h4>
+                <p>Toute l'équipe voit le même historique unifié des modifications, avec traçabilité complète de qui a fait quoi et quand.</p>
+            </div>
+        </div>
+
+        <div class="feature-item">
+            <div class="feature-icon">🔧</div>
+            <div class="feature-content">
+                <h4>Intégration et Automatisation</h4>
+                <p>Connexion avec des outils de tests automatiques, déploiement continu, notifications, et centaines d'intégrations tierces.</p>
+                <div class="card-grid" style="margin-top: 0.5rem;">
+                    <div class="card">
+                        <div class="card-header">
+                            <span class="card-icon">🧪</span>
+                            <h3>Tests Automatiques</h3>
+                        </div>
+                        <p>Chaque commit déclenche une batterie de tests</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <span class="card-icon">🚀</span>
+                            <h3>Déploiement</h3>
+                        </div>
+                        <p>Mise en production automatique après validation</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h3>Impact sur les Workflows Modernes</h3>
+
+    <div class="timeline">
+        <div class="timeline-item">
+            <div class="timeline-marker">🏠</div>
+            <div class="timeline-content">
+                <h4>Travail à Distance</h4>
+                <p>Équipes distribuées géographiquement peuvent collaborer comme si elles étaient dans le même bureau.</p>
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-marker">🔄</div>
+            <div class="timeline-content">
+                <h4>Intégration Continue</h4>
+                <p>Chaque modification est immédiatement testée et validée, réduisant drastiquement les bugs.</p>
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-marker">📊</div>
+            <div class="timeline-content">
+                <h4>Transparence Totale</h4>
+                <p>Managers et équipes ont une visibilité complète sur l'avancement et la qualité du code.</p>
+            </div>
+        </div>
+
+        <div class="timeline-item">
+            <div class="timeline-marker">🚀</div>
+            <div class="timeline-content">
+                <h4>Déploiement Rapide</h4>
+                <p>De l'idée à la production en quelques heures grâce à l'automatisation complète.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="stat-card">
+        <div class="stat-number">78%</div>
+        <div class="stat-label">des entreprises tech utilisent des dépôts distants pour 100% de leurs projets</div>
+    </div>
+</section>
+
+<!-- Concepts Summary -->
+<section id="concepts-summary" class="doc-section">
+    <h2>Résumé des Concepts Clés</h2>
+    
+    <p class="lead">Récapitulons les concepts essentiels pour bien comprendre l'écosystème Git moderne et les choix technologiques à faire.</p>
+
+    <div class="card-grid">
+        <div class="card">
+            <div class="card-header">
+                <span class="card-icon">⚙️</span>
+                <h3>Git</h3>
+            </div>
+            <div class="badge badge-success">Outil de Base</div>
+            <p><strong>Gère les versions localement sur votre machine</strong></p>
+            <ul style="margin-top: 0.5rem; font-size: 0.9rem;">
+                <li>Commits, branches, merges</li>
+                <li>Historique complet en local</li>
+                <li>Fonctionne sans Internet</li>
+                <li>Base de tout l'écosystème</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <span class="card-icon">☁️</span>
+                <h3>Dépôt Distant</h3>
+            </div>
+            <div class="badge badge-warning">Infrastructure</div>
+            <p><strong>Copie du projet hébergée en ligne pour collaboration</strong></p>
+            <ul style="margin-top: 0.5rem; font-size: 0.9rem;">
+                <li>Synchronisation d'équipe</li>
+                <li>Sauvegarde sécurisée</li>
+                <li>Point de vérité central</li>
+                <li>Accessible partout</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <span class="card-icon">🐙</span>
+                <h3>GitHub</h3>
+            </div>
+            <div class="badge badge-info">Plateforme Communauté</div>
+            <p><strong>Plateforme centrée sur la collaboration et communauté open-source</strong></p>
+            <ul style="margin-top: 0.5rem; font-size: 0.9rem;">
+                <li>Interface simple et rapide</li>
+                <li>100M+ développeurs</li>
+                <li>Écosystème open source #1</li>
+                <li>Intégrations nombreuses</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <span class="card-icon">🦊</span>
+                <h3>GitLab</h3>
+            </div>
+            <div class="badge badge-error">Plateforme DevOps</div>
+            <p><strong>Plateforme DevOps complète avec outils intégrés</strong></p>
+            <ul style="margin-top: 0.5rem; font-size: 0.9rem;">
+                <li>CI/CD natif et puissant</li>
+                <li>Auto-hébergement possible</li>
+                <li>Contrôle permissions fin</li>
+                <li>Orienté entreprise</li>
+            </ul>
+        </div>
+    </div>
+
+    <h3>Matrice de Décision</h3>
+
+    <div class="table-wrapper">
+        <table class="comparison-table">
+            <thead>
+                <tr>
+                    <th>Contexte</th>
+                    <th>Recommandation</th>
+                    <th>Justification</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Projet Open Source</strong></td>
+                    <td><span class="badge badge-success">GitHub</span></td>
+                    <td>Communauté massive, visibilité maximale</td>
+                </tr>
+                <tr>
+                    <td><strong>Startup/PME</strong></td>
+                    <td><span class="badge badge-success">GitHub</span></td>
+                    <td>Simplicité, rapidité de mise en place</td>
+                </tr>
+                <tr>
+                    <td><strong>Grande Entreprise</strong></td>
+                    <td><span class="badge badge-warning">GitLab</span></td>
+                    <td>Contrôle, sécurité, outils intégrés</td>
+                </tr>
+                <tr>
+                    <td><strong>Équipe DevOps</strong></td>
+                    <td><span class="badge badge-warning">GitLab</span></td>
+                    <td>CI/CD natif, pipelines avancés</td>
+                </tr>
+                <tr>
+                    <td><strong>Apprentissage</strong></td>
+                    <td><span class="badge badge-success">GitHub</span></td>
+                    <td>Documentation excellente, communauté</td>
+                </tr>
+                <tr>
+                    <td><strong>Sécurité Critique</strong></td>
+                    <td><span class="badge badge-warning">GitLab</span></td>
+                    <td>Auto-hébergement, contrôle total</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="alert alert-info">
+        <div class="alert-icon">🎯</div>
+        <div class="alert-content">
+            <strong>Message Final</strong>
+            <p>Git est votre fondation technique. GitHub ou GitLab sont vos outils de collaboration. Maîtrisez Git d'abord, puis choisissez la plateforme selon vos besoins spécifiques.</p>
+        </div>
+    </div>
+
+    <div class="final-message">
+        <h3>🚀 Prochaine Étape</h3>
+        <p>Maintenant que vous comprenez les concepts, il est temps de passer à la pratique avec les commandes Git essentielles et la configuration de votre premier dépôt distant !</p>
+    </div>
+</section>

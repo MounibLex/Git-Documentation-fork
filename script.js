@@ -169,6 +169,102 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // ========================================
+// GLOBAL COPY COMMAND FUNCTION
+// ========================================
+
+// Global function for copying commands (called by onclick)
+function copyCommand(element) {
+    const text = element.textContent.trim();
+    
+    // Copy to clipboard
+    navigator.clipboard.writeText(text).then(function() {
+        // Show feedback
+        const originalText = element.textContent;
+        const originalBg = element.style.backgroundColor;
+        
+        element.textContent = '✓ Copié!';
+        element.style.backgroundColor = '#d5f4e6';
+        element.style.color = '#27ae60';
+        
+        setTimeout(function() {
+            element.textContent = originalText;
+            element.style.backgroundColor = originalBg;
+            element.style.color = '';
+        }, 2000);
+    }).catch(function(err) {
+        console.error('Erreur lors de la copie:', err);
+        // Fallback for older browsers
+        const originalText = element.textContent;
+        element.textContent = '❌ Erreur de copie';
+        element.style.backgroundColor = '#ffebee';
+        element.style.color = '#e74c3c';
+        
+        setTimeout(function() {
+            element.textContent = originalText;
+            element.style.backgroundColor = '';
+            element.style.color = '';
+        }, 2000);
+    });
+}
+
+// ========================================
+// ENHANCED COPY FUNCTIONALITY FOR ALL CODE CONTAINERS
+// ========================================
+
+// Function to apply copy functionality to a container
+function applyCodeCopyFunctionality(container = document) {
+    // Add copy functionality to all code elements that don't already have onclick
+    const allCodeElements = container.querySelectorAll('code:not([onclick]):not(.copyable-code), pre code:not(.copyable-code), .code-block code:not(.copyable-code)');
+    
+    allCodeElements.forEach(code => {
+        // Skip if it's too short (likely inline code)
+        if (code.textContent.trim().length < 3) return;
+        
+        code.style.cursor = 'pointer';
+        code.setAttribute('title', 'Cliquer pour copier');
+        code.classList.add('copyable-code');
+        
+        code.addEventListener('click', function(e) {
+            e.stopPropagation();
+            copyCommand(this);
+        });
+    });
+    
+    // Add copy functionality to command-example elements specifically
+    const commandExamples = container.querySelectorAll('.command-example:not([onclick]):not(.copyable-code)');
+    
+    commandExamples.forEach(cmd => {
+        cmd.style.cursor = 'pointer';
+        cmd.setAttribute('title', 'Cliquer pour copier');
+        cmd.classList.add('copyable-code');
+        
+        cmd.addEventListener('click', function(e) {
+            e.stopPropagation();
+            copyCommand(this);
+        });
+    });
+    
+    // Add copy functionality to command-card code elements
+    const commandCardCodes = container.querySelectorAll('.command-card code:not([onclick]):not(.copyable-code)');
+    
+    commandCardCodes.forEach(code => {
+        code.style.cursor = 'pointer';
+        code.setAttribute('title', 'Cliquer pour copier');
+        code.classList.add('copyable-code');
+        
+        code.addEventListener('click', function(e) {
+            e.stopPropagation();
+            copyCommand(this);
+        });
+    });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Apply copy functionality to initial content
+    applyCodeCopyFunctionality();
+});
+
+// ========================================
 // MOBILE SIDEBAR TOGGLE (Optional)
 // ========================================
 
@@ -234,7 +330,8 @@ document.addEventListener('DOMContentLoaded', function() {
         { id: 'git-installation-placeholder', url: 'sections/git-installation.html' },
         { id: 'basic-commands-placeholder', url: 'sections/basic-commands.html' },
         { id: 'branching-tutorial-placeholder', url: 'sections/branching-tutorial.html' },
-        { id: 'git-conflicts-placeholder', url: 'sections/git-conflicts.html' }
+        { id: 'git-conflicts-placeholder', url: 'sections/git-conflicts.html' },
+        { id: 'git-remote-platforms-placeholder', url: 'sections/git-remote-platforms.html' }
         
     ];
 
@@ -265,6 +362,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     link.parentNode.replaceChild(clean, link);
                     clean.addEventListener('click', handleNavClick);
                 });
+                
+                // Apply copy functionality to newly loaded content
+                applyCodeCopyFunctionality(placeholder);
                 
                 // Update navigation after loading content
                 setTimeout(() => {
