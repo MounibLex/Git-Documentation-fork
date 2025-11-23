@@ -10,7 +10,6 @@
                 <li>Comprendre le concept des branches Git</li>
                 <li>Apprendre à créer, naviguer et gérer les branches</li>
                 <li>Maîtriser les différentes stratégies de fusion</li>
-                <li>Résoudre les conflits de fusion</li>
                 <li>Adopter les meilleures pratiques</li>
             </ul>
         </div>
@@ -187,95 +186,7 @@
         </div>
     </section>
 
-    <!-- Section 3: Handling Merge Conflicts -->
-    <section class="conflicts-section">
-        <h2 id="conflits-fusion">⚠️ Gérer les Conflits de Fusion</h2>
-        <p class="lead">Les conflits surviennent quand deux branches modifient la même partie d'un fichier différemment. Apprenez à les résoudre efficacement.</p>
-
-        <div class="conflict-explanation">
-            <div class="explanation-card">
-                <div class="explanation-icon">⚡</div>
-                <div class="explanation-content">
-                    <h3>Qu'est-ce qu'un conflit ?</h3>
-                    <ul>
-                        <li>Les conflits surviennent quand <strong>deux branches modifient la même partie d'un fichier</strong> différemment</li>
-                        <li>Git marque les <strong>zones de conflit à l'intérieur du fichier</strong>, et vous devez les éditer manuellement</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <!-- Conflict Resolution Commands -->
-        <div class="commands-section">
-            <h3>🔧 Commandes de résolution de conflits</h3>
-            <div class="command-grid">
-                <div class="command-card">
-                    <div class="command-title">Vérifier les fichiers en conflit</div>
-                    <code class="command-example" onclick="copyCommand(this)">git status</code>
-                    <div class="command-explanation">Affiche quels fichiers sont en conflit</div>
-                </div>
-
-                <div class="command-card">
-                    <div class="command-title">Marquer un conflit comme résolu</div>
-                    <code class="command-example" onclick="copyCommand(this)">git add &lt;fichier&gt;</code>
-                    <div class="command-explanation">Ajoute le fichier après résolution manuelle</div>
-                </div>
-
-                <div class="command-card danger">
-                    <div class="command-title">Annuler la fusion</div>
-                    <code class="command-example" onclick="copyCommand(this)">git merge --abort</code>
-                    <div class="command-explanation">Annule le processus de fusion et revient à l'état précédent</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Conflict Resolution Process -->
-        <div class="resolution-process">
-            <h3>🛠️ Processus de résolution</h3>
-            <div class="process-steps">
-                <div class="process-step">
-                    <div class="process-number">1</div>
-                    <div class="process-content">
-                        <h4>Identifier le conflit</h4>
-                        <p>Git affiche un message indiquant les fichiers en conflit</p>
-                        <div class="conflict-example">
-                            <strong>Exemple de conflit dans un fichier :</strong>
-                            <pre><code><<<<<<< HEAD
-console.log("Version de la branche main");
-=======
-console.log("Version de la branche feature");
->>>>>>> feature/login-page</code></pre>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="process-step">
-                    <div class="process-number">2</div>
-                    <div class="process-content">
-                        <h4>Éditer le fichier</h4>
-                        <p>Supprimez les marqueurs de conflit et gardez le code souhaité</p>
-                        <div class="resolution-example">
-                            <strong>Après résolution :</strong>
-                            <pre><code>console.log("Version fusionnée et corrigée");</code></pre>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="process-step">
-                    <div class="process-number">3</div>
-                    <div class="process-content">
-                        <h4>Finaliser la fusion</h4>
-                        <div class="command-sequence">
-                            <code class="command-example" onclick="copyCommand(this)">git add .</code>
-                            <code class="command-example" onclick="copyCommand(this)">git commit</code>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Section 4: Best Practices -->
+    <!-- Section 3: Best Practices -->
     <section class="best-practices-section">
         <h2 id="bonnes-pratiques">✨ Meilleures Pratiques</h2>
         <p class="lead">Adoptez ces pratiques pour une gestion efficace des branches et des fusions.</p>
@@ -424,7 +335,6 @@ console.log("Version de la branche feature");
             <li>✅ <strong>Concept des branches</strong> - Lignes de développement indépendantes</li>
             <li>✅ <strong>Commandes essentielles</strong> - Création, navigation et gestion des branches</li>
             <li>✅ <strong>Types de fusion</strong> - Fast-forward et three-way merge</li>
-            <li>✅ <strong>Résolution de conflits</strong> - Identifier et résoudre les conflits</li>
             <li>✅ <strong>Meilleures pratiques</strong> - Conventions et workflow efficaces</li>
         </ul>
         <p><strong>Prochaine étape :</strong> Appliquer ces compétences dans des projets collaboratifs ! 🚀</p>

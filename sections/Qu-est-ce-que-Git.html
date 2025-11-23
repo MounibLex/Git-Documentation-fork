@@ -129,29 +129,26 @@
         </div>
 
         <div class="workflow-diagram">
-            <h4>🔄 Relation Local ↔ Distant</h4>
-            <div class="workflow-steps">
-                <div class="workflow-step">
-                    <div class="step-icon">📥</div>
-                    <div class="step-content">
-                        <strong>Clone/Pull</strong>
-                        <p>Récupérer les données du dépôt distant</p>
-                    </div>
-                </div>
-                <div class="workflow-arrow">→</div>
-                <div class="workflow-step">
-                    <div class="step-icon">⚙️</div>
-                    <div class="step-content">
-                        <strong>Travail Local</strong>
-                        <p>Modifications, commits, branches</p>
-                    </div>
-                </div>
-                <div class="workflow-arrow">→</div>
-                <div class="workflow-step">
-                    <div class="step-icon">📤</div>
-                    <div class="step-content">
-                        <strong>Push</strong>
-                        <p>Envoyer les changements vers le distant</p>
+            <h4>🔄 Le Cycle Git : Working Directory → Index → HEAD</h4>
+            <div class="workflow-image-container">
+                <img src="../Gemini_Generated_Image_x8ko1tx8ko1tx8ko.png" 
+                     alt="Git Workflow: Working Directory vers Index via 'add', puis Index vers Commit via 'commit'" 
+                     class="workflow-illustration">
+                <div class="workflow-description">
+                    <p class="lead">Ce diagramme illustre le <strong>flux fondamental de Git</strong> :</p>
+                    <div class="workflow-steps-explanation">
+                        <div class="step-explanation">
+                            <span class="step-number">1️⃣</span>
+                            <strong>Working Directory</strong> → Votre espace de travail avec les fichiers modifiés
+                        </div>
+                        <div class="step-explanation">
+                            <span class="step-number">2️⃣</span>
+                            <strong>git add</strong> → Déplace les changements vers l'Index (zone de transit)
+                        </div>
+                        <div class="step-explanation">
+                            <span class="step-number">3️⃣</span>
+                            <strong>git commit</strong> → Enregistre définitivement les changements dans HEAD
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1335,4 +1332,79 @@
         align-self: center;
     }
 }
+
+/* Workflow Image Styles */
+.workflow-image-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-lg);
+    margin: var(--spacing-xl) 0;
+    padding: var(--spacing-lg);
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 12px;
+    border: 2px solid var(--border-color);
+}
+
+.workflow-illustration {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.workflow-illustration:hover {
+    transform: scale(1.02);
+}
+
+.workflow-description {
+    text-align: center;
+    max-width: 800px;
+}
+
+.workflow-steps-explanation {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-lg);
+}
+
+.step-explanation {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    padding: var(--spacing-md);
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    transition: all 0.2s ease;
+}
+
+.step-explanation:hover {
+    transform: translateX(5px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.step-number {
+    font-size: var(--font-size-lg);
+    flex-shrink: 0;
+}
+
+@media (max-width: 768px) {
+    .workflow-image-container {
+        padding: var(--spacing-md);
+    }
+    
+    .step-explanation {
+        flex-direction: column;
+        text-align: center;
+        gap: var(--spacing-sm);
+    }
+    
+    .workflow-steps-explanation {
+        gap: var(--spacing-sm);
+    }
+}
+
 </style>
