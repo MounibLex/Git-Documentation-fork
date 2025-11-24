@@ -26,7 +26,7 @@
                 <code class="command-example" onclick="copyCommand(this)">git config --global user.name "Votre Nom"</code>
                 <div class="command-explanation">
                     <strong>Exemple pratique :</strong>
-                    <code class="command-example" onclick="copyCommand(this)">git config --global user.name "Badr Ferhani"</code>
+                    <code class="command-example" onclick="copyCommand(this)">git config --global user.name "Badr Farhani"</code>
                 </div>
             </div>
             <div class="command-card">
@@ -34,7 +34,7 @@
                 <code class="command-example" onclick="copyCommand(this)">git config --global user.email "votre@email.com"</code>
                 <div class="command-explanation">
                     <strong>Exemple pratique :</strong>
-                    <code class="command-example" onclick="copyCommand(this)">git config --global user.email "badr@example.com"</code>
+                    <code class="command-example" onclick="copyCommand(this)">git config --global user.email "badrfarhani95@example.com"</code>
                 </div>
             </div>
             <div class="command-card">
@@ -197,12 +197,31 @@
             <div class="command-card">
                 <div class="command-title">Comparer les fichiers modifiés</div>
                 <code class="command-example" onclick="copyCommand(this)">git diff</code>
-                <div class="command-explanation">Montre ligne par ligne ce qui a changé dans vos fichiers</div>
+                <div class="command-explanation">Montre ligne par ligne ce qui a changé dans vos fichiers non ajoutés (working directory vs staging area)</div>
             </div>
             <div class="command-card">
-                <div class="command-title">Comparer un fichier spécifique</div>
-                <code class="command-example" onclick="copyCommand(this)">git diff --base nom-fichier.ext</code>
-                <div class="command-explanation">Compare un fichier avec sa version de base</div>
+                <div class="command-title">Comparer les fichiers en zone d'index</div>
+                <code class="command-example" onclick="copyCommand(this)">git diff --staged</code>
+                <div class="command-explanation">Compare les fichiers ajoutés avec <code>git add</code> avec le dernier commit</div>
+            </div>
+            <div class="command-card">
+                <div class="command-title">Comparer avec le dernier commit</div>
+                <code class="command-example" onclick="copyCommand(this)">git diff HEAD</code>
+                <div class="command-explanation">Montre toutes les différences entre votre working directory et le dernier commit</div>
+            </div>
+            <div class="command-card">
+                <div class="command-title">Comparer deux commits</div>
+                <code class="command-example" onclick="copyCommand(this)">git diff commit1 commit2</code>
+                <div class="command-explanation">
+                    Compare deux commits spécifiques<br>
+                    <strong>Exemple :</strong>
+                    <code class="command-example" onclick="copyCommand(this)">git diff abc1234 def5678</code>
+                </div>
+            </div>
+            <div class="command-card">
+                <div class="command-title">Voir uniquement les noms des fichiers modifiés</div>
+                <code class="command-example" onclick="copyCommand(this)">git diff --name-only</code>
+                <div class="command-explanation">Affiche seulement la liste des fichiers modifiés, sans montrer le contenu des changements</div>
             </div>
         </div>
 
@@ -356,22 +375,7 @@
             </div>
         </div>
 
-        <div class="card">
-            <div class="card-header">
-                <span class="card-icon">🔐</span>
-                <h4>Configuration SSH</h4>
-            </div>
-            <div class="command-card">
-                <div class="command-title">Générer une clé SSH</div>
-                <code class="command-example" onclick="copyCommand(this)">ssh-keygen -t ed25519 -C "votre@email.com"</code>
-                <div class="command-explanation">Permet de se connecter à GitHub/GitLab sans mot de passe</div>
-            </div>
-            <div class="command-card">
-                <div class="command-title">Afficher la clé publique</div>
-                <code class="command-example" onclick="copyCommand(this)">cat ~/.ssh/id_ed25519.pub</code>
-                <div class="command-explanation">Copiez le résultat dans vos paramètres GitHub/GitLab</div>
-            </div>
-        </div>
+        
 
         <div class="card">
             <div class="card-header">
