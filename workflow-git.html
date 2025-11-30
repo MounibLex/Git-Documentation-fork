@@ -86,7 +86,7 @@
         }
 
         .accordion-item.active .accordion-content {
-            max-height: 200px; /* Assez grand pour le texte */
+            max-height: 320px; /* Assez grand pour le contenu détaillé */
             opacity: 1;
         }
 
@@ -248,8 +248,14 @@
                         <i class="ph ph-caret-down text-slate-500 chevron"></i>
                     </button>
                     <div class="accordion-content px-4 pb-4">
+                        <p class="text-sm text-slate-400 mb-3">
+                            Le <strong>Gitflow Workflow</strong> est un modèle de branchement robuste pour Git, spécialement conçu pour gérer des projets avec des cycles de release structurés.
+                        </p>
+                        <p class="text-sm text-slate-400 mb-2">
+                            <strong>Objectif :</strong> Fournir un framework strict qui sépare clairement le développement de nouvelles fonctionnalités, la préparation des releases, et les correctifs de production.
+                        </p>
                         <p class="text-sm text-slate-400">
-                            Le Gitflow est un modèle de branchement strict conçu pour la gestion des releases de projets. Il définit un rôle très précis pour chaque branche.
+                            <strong>Idéal pour :</strong> Équipes travaillant sur des versions planifiées avec des déploiements réguliers en production.
                         </p>
                     </div>
                 </div>
@@ -264,9 +270,18 @@
                         <i class="ph ph-caret-down text-slate-500 chevron"></i>
                     </button>
                     <div class="accordion-content px-4 pb-4">
-                        <p class="text-sm text-slate-400">
-                            La branche sacrée. Elle ne contient que du code <strong>prêt pour la production</strong>. On n'y commit jamais directement. Elle ne reçoit que des fusions provenant de <em>Release</em> ou <em>Hotfix</em>.
+                        <p class="text-sm text-slate-400 mb-3">
+                            La <strong>branche de production</strong> - elle doit toujours refléter un état prêt pour la production, contenant uniquement la version stable du code qui a été officiellement publiée.
                         </p>
+                        <div class="text-xs text-slate-500 mb-2">
+                            <strong>Règles strictes :</strong>
+                        </div>
+                        <ul class="text-xs text-slate-400 ml-4 space-y-1">
+                            <li>• Aucun commit direct autorisé</li>
+                            <li>• Seules les fusions depuis Release ou Hotfix</li>
+                            <li>• Chaque commit est tagué avec un numéro de version</li>
+                            <li>• Représente toujours le dernier état déployé</li>
+                        </ul>
                     </div>
                 </div>
 
@@ -280,9 +295,18 @@
                         <i class="ph ph-caret-down text-slate-500 chevron"></i>
                     </button>
                     <div class="accordion-content px-4 pb-4">
-                        <p class="text-sm text-slate-400">
-                            C'est la colonne vertébrale du projet. C'est ici que le code des fonctionnalités est rassemblé. Quand <em>Develop</em> est stable, on prépare une <em>Release</em>.
+                        <p class="text-sm text-slate-400 mb-3">
+                            La <strong>branche d'intégration</strong> où convergent toutes les nouvelles fonctionnalités. Créée depuis Main au début du projet, elle sert de point central pour le développement.
                         </p>
+                        <div class="text-xs text-slate-500 mb-2">
+                            <strong>Cycle de vie :</strong>
+                        </div>
+                        <ul class="text-xs text-slate-400 ml-4 space-y-1">
+                            <li>• Reçoit les fusions de toutes les branches Feature</li>
+                            <li>• Permet la résolution des conflits entre fonctionnalités</li>
+                            <li>• Base de création des branches Release</li>
+                            <li>• Maintient l'historique complet du développement</li>
+                        </ul>
                     </div>
                 </div>
 
@@ -296,9 +320,19 @@
                         <i class="ph ph-caret-down text-slate-500 chevron"></i>
                     </button>
                     <div class="accordion-content px-4 pb-4">
-                        <p class="text-sm text-slate-400">
-                            Utilisées pour développer de nouvelles features. Elles partent de <em>Develop</em> et reviennent dans <em>Develop</em> via une Merge Request.
+                        <p class="text-sm text-slate-400 mb-3">
+                            <strong>Branches dédiées</strong> créées pour chaque nouvelle fonctionnalité. Elles isolent le travail en cours du code principal, réduisant les risques de bugs dans Develop.
                         </p>
+                        <div class="text-xs text-slate-500 mb-2">
+                            <strong>Workflow typique :</strong>
+                        </div>
+                        <ul class="text-xs text-slate-400 ml-4 space-y-1">
+                            <li>• Création depuis Develop (git checkout -b feature/nom)</li>
+                            <li>• Développement isolé de la fonctionnalité</li>
+                            <li>• Tests et validation en local</li>
+                            <li>• Merge Request vers Develop</li>
+                            <li>• Suppression après fusion réussie</li>
+                        </ul>
                     </div>
                 </div>
 
@@ -312,9 +346,19 @@
                         <i class="ph ph-caret-down text-slate-500 chevron"></i>
                     </button>
                     <div class="accordion-content px-4 pb-4">
-                        <p class="text-sm text-slate-400">
-                            Branche temporaire pour finaliser une version (v1.0). On y corrige les derniers bugs mineurs avant de fusionner vers <em>Main</em> et <em>Develop</em>.
+                        <p class="text-sm text-slate-400 mb-3">
+                            <strong>Branche de préparation</strong> créée quand Develop atteint un point stable et prêt pour une release. Elle permet la finalisation sans bloquer le développement futur.
                         </p>
+                        <div class="text-xs text-slate-500 mb-2">
+                            <strong>Processus de release :</strong>
+                        </div>
+                        <ul class="text-xs text-slate-400 ml-4 space-y-1">
+                            <li>• Création d'un Release Candidate (RC1, RC2...)</li>
+                            <li>• Déploiement en environnement de staging</li>
+                            <li>• Tests finaux et corrections mineures uniquement</li>
+                            <li>• Fusion simultanée vers Main ET Develop</li>
+                            <li>• Tag de version sur Main (v1.0, v1.1...)</li>
+                        </ul>
                     </div>
                 </div>
 
@@ -328,9 +372,19 @@
                         <i class="ph ph-caret-down text-slate-500 chevron"></i>
                     </button>
                     <div class="accordion-content px-4 pb-4">
-                        <p class="text-sm text-slate-400">
-                            La seule branche qui peut partir de <em>Main</em>. Utilisée pour réparer un bug critique en production immédiatement.
+                        <p class="text-sm text-slate-400 mb-3">
+                            <strong>Branche d'urgence</strong> - la seule autorisée à partir directement de Main. Créée pour corriger rapidement un bug critique découvert en production.
                         </p>
+                        <div class="text-xs text-slate-500 mb-2">
+                            <strong>Processus d'urgence :</strong>
+                        </div>
+                        <ul class="text-xs text-slate-400 ml-4 space-y-1">
+                            <li>• Création immédiate depuis Main</li>
+                            <li>• Correction ciblée du bug critique</li>
+                            <li>• Tests rapides mais rigoureux</li>
+                            <li>• Fusion vers Main (nouveau tag v1.0.1)</li>
+                            <li>• Fusion vers Develop (évite la régression)</li>
+                        </ul>
                     </div>
                 </div>
 
@@ -367,36 +421,33 @@
                 }
             }
 
-            // 2. Events sur le SVG (Hover only if nothing clicked)
+            // 2. Events sur le SVG (Click only)
             svgGroups.forEach(group => {
-                group.addEventListener('mouseenter', () => {
-                    if (!clickedSection) {
-                        const target = group.getAttribute('data-target');
+                // Click to toggle selection
+                group.addEventListener('click', () => {
+                    const target = group.getAttribute('data-target');
+                    // Toggle behavior: if same section clicked, close it
+                    if (clickedSection === target) {
+                        clickedSection = null;
+                        activateSection(null);
+                    } else {
+                        clickedSection = target;
                         activateSection(target);
                     }
                 });
-
-                // Click to lock the selection
-                group.addEventListener('click', () => {
-                    const target = group.getAttribute('data-target');
-                    clickedSection = target;
-                    activateSection(target);
-                });
             });
 
-            // 3. Events sur l'Accordéon
+            // 3. Events sur l'Accordéon (Click only)
             accordions.forEach(acc => {
-                // Click pour verrouiller la sélection
+                // Click to toggle selection
                 acc.addEventListener('click', () => {
                     const target = acc.getAttribute('data-target');
-                    clickedSection = target;
-                    activateSection(target);
-                });
-
-                // Hover seulement si rien n'est cliqué
-                acc.addEventListener('mouseenter', () => {
-                    if (!clickedSection) {
-                        const target = acc.getAttribute('data-target');
+                    // Toggle behavior: if same section clicked, close it
+                    if (clickedSection === target) {
+                        clickedSection = null;
+                        activateSection(null);
+                    } else {
+                        clickedSection = target;
                         activateSection(target);
                     }
                 });
