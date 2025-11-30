@@ -1,0 +1,1511 @@
+<section id="gitlab-platform" class="doc-section">
+    <h1 class="page-title">🦊 GitLab - Plateforme DevOps Complète</h1>
+    <p class="page-subtitle">GitLab est une plateforme complète pour stocker du code, collaborer avec une équipe, gérer des tâches et automatiser le déploiement.</p>
+    
+    <div class="alert alert-success">
+        <div class="alert-icon">🎯</div>
+        <div class="alert-content">
+            <strong>Objectifs de cette section</strong>
+            <ul style="margin: 0.5rem 0 0 0; padding-left: 1.5rem;">
+                <li>Comprendre ce qu'est GitLab et ses composants principaux</li>
+                <li>Découvrir pourquoi utiliser GitLab pour vos projets</li>
+                <li>Maîtriser le cycle DevOps complet avec GitLab</li>
+                <li>Apprendre les concepts clés et la terminologie</li>
+                <li>Explorer les outils de collaboration intégrés</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Section 1: What is GitLab -->
+    <section class="gitlab-definition-section">
+        <h2 id="gitlab-definition">📋 Qu'est-ce que GitLab ?</h2>
+        <p class="lead">GitLab est une plateforme en ligne qui permet aux développeurs de collaborer sur du code en utilisant Git tout en offrant des outils de gestion de projet, de collaboration et d'automatisation.</p>
+        
+        <div class="concept-explanation">
+            <div class="explanation-card">
+                <div class="explanation-icon">🦊</div>
+                <div class="explanation-content">
+                    <h3>GitLab vs Git - Quelle différence ?</h3>
+                    <div class="comparison-grid">
+                        <div class="comparison-item git">
+                            <h4>Git</h4>
+                            <p>Technologie de gestion de versions</p>
+                            <ul>
+                                <li>Système de contrôle de version distribué</li>
+                                <li>Outil en ligne de commande</li>
+                                <li>Fonctionne localement</li>
+                            </ul>
+                        </div>
+                        <div class="comparison-item gitlab">
+                            <h4>GitLab</h4>
+                            <p>Plateforme complète basée sur Git</p>
+                            <ul>
+                                <li>Interface web intuitive</li>
+                                <li>Outils de collaboration</li>
+                                <li>Automatisation CI/CD</li>
+                                <li>Gestion de projets</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h3>🔧 Composants Principaux de GitLab</h3>
+        <div class="components-grid">
+            <div class="component-card">
+                <div class="component-icon">🔧</div>
+                <div class="component-content">
+                    <h4>Gestion de versions avec Git</h4>
+                    <p>Système de contrôle de version distribué pour suivre les modifications du code</p>
+                </div>
+            </div>
+
+            <div class="component-card">
+                <div class="component-icon">🏠</div>
+                <div class="component-content">
+                    <h4>Hébergement de projets</h4>
+                    <p>Stockage centralisé et sécurisé de vos repositories Git</p>
+                </div>
+            </div>
+
+            <div class="component-card">
+                <div class="component-icon">👥</div>
+                <div class="component-content">
+                    <h4>Collaboration</h4>
+                    <p>Issues, merge requests, commentaires pour travailler en équipe</p>
+                </div>
+            </div>
+
+            <div class="component-card">
+                <div class="component-icon">🚀</div>
+                <div class="component-content">
+                    <h4>Automatisation CI/CD</h4>
+                    <p>Pipelines automatisés pour tests, builds et déploiements</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: Why Use GitLab -->
+    <section class="gitlab-why-section">
+        <h2 id="gitlab-why-use">💡 Pourquoi Utiliser GitLab ?</h2>
+        <p class="lead">GitLab offre de nombreux avantages pour les développeurs individuels et les équipes.</p>
+        
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <div class="benefit-icon">👨‍💻</div>
+                <div class="benefit-content">
+                    <h3>Travail d'Équipe</h3>
+                    <p>Permet de travailler en équipe sans conflit de code en utilisant des branches.</p>
+                    <ul>
+                        <li>Branches isolées pour chaque développeur</li>
+                        <li>Fusion contrôlée des modifications</li>
+                        <li>Résolution automatique des conflits</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="benefit-card">
+                <div class="benefit-icon">📚</div>
+                <div class="benefit-content">
+                    <h3>Historique Complet</h3>
+                    <p>Garde l'historique complet du projet avec possibilité de revenir en arrière.</p>
+                    <ul>
+                        <li>Chaque modification est tracée</li>
+                        <li>Possibilité de revenir à n'importe quelle version</li>
+                        <li>Comparaison entre versions</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="benefit-card">
+                <div class="benefit-icon">🤝</div>
+                <div class="benefit-content">
+                    <h3>Collaboration</h3>
+                    <p>Offre des outils comme les issues, merge requests, boards, commentaires.</p>
+                    <ul>
+                        <li>Issues pour gérer les tâches</li>
+                        <li>Merge requests pour réviser le code</li>
+                        <li>Boards pour organiser le travail</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="benefit-card">
+                <div class="benefit-icon">🔄</div>
+                <div class="benefit-content">
+                    <h3>Automatisation</h3>
+                    <p>CI/CD permet d'automatiser tests, build et déploiements.</p>
+                    <ul>
+                        <li>Tests automatiques à chaque commit</li>
+                        <li>Déploiement automatique</li>
+                        <li>Intégration continue</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="benefit-card">
+                <div class="benefit-icon">🔐</div>
+                <div class="benefit-content">
+                    <h3>Sécurité</h3>
+                    <p>Gestion fine des permissions, groupes et accès.</p>
+                    <ul>
+                        <li>Contrôle d'accès granulaire</li>
+                        <li>Groupes et sous-groupes</li>
+                        <li>Analyse de sécurité automatique</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: DevOps Platform -->
+    <section class="gitlab-devops-section">
+        <h2 id="gitlab-devops">🔄 GitLab comme Plateforme DevOps Complète</h2>
+        <p class="lead">GitLab est souvent qualifiée de 'plateforme DevOps complète' car elle intègre tous les outils nécessaires au cycle de vie du développement logiciel, de la planification au déploiement, en une seule application.</p>
+
+        <div class="devops-explanation">
+            <div class="explanation-card">
+                <div class="explanation-icon">♾️</div>
+                <div class="explanation-content">
+                    <h3>Qu'est-ce que DevOps ?</h3>
+                    <p><strong>DevOps</strong> est une méthodologie qui unit les équipes de <strong>Dev</strong>eloppement et d'<strong>Op</strong>érations pour améliorer la collaboration et accélérer la livraison de logiciels.</p>
+                </div>
+            </div>
+        </div>
+
+        <h3>🔄 Le Cycle DevOps avec GitLab</h3>
+        <div class="devops-cycle">
+            <div class="devops-stage">
+                <div class="stage-icon">📋</div>
+                <h4>Plan</h4>
+                <p>Planifier les fonctionnalités (Issues, Epics, Milestones)</p>
+            </div>
+            <div class="devops-stage">
+                <div class="stage-icon">💻</div>
+                <h4>Code</h4>
+                <p>Écrire et réviser le code (Repositories, Merge Requests)</p>
+            </div>
+            <div class="devops-stage">
+                <div class="stage-icon">🔨</div>
+                <h4>Build</h4>
+                <p>Compiler et construire l'application (CI/CD)</p>
+            </div>
+            <div class="devops-stage">
+                <div class="stage-icon">🧪</div>
+                <h4>Test</h4>
+                <p>Exécuter des tests automatisés pour garantir la qualité</p>
+            </div>
+            <div class="devops-stage">
+                <div class="stage-icon">📦</div>
+                <h4>Release</h4>
+                <p>Versionner et publier les paquets (Package Registry)</p>
+            </div>
+            <div class="devops-stage">
+                <div class="stage-icon">🚀</div>
+                <h4>Deploy</h4>
+                <p>Déployer l'application sur des serveurs</p>
+            </div>
+            <div class="devops-stage">
+                <div class="stage-icon">⚙️</div>
+                <h4>Operate</h4>
+                <p>Configurer et gérer l'infrastructure</p>
+            </div>
+            <div class="devops-stage">
+                <div class="stage-icon">📊</div>
+                <h4>Monitor</h4>
+                <p>Surveiller les performances de l'application</p>
+            </div>
+            <div class="devops-stage">
+                <div class="stage-icon">🔒</div>
+                <h4>Secure</h4>
+                <p>Analyser le code pour les vulnérabilités</p>
+            </div>
+        </div>
+
+        <div class="alert alert-info">
+            <div class="alert-icon">💡</div>
+            <div class="alert-content">
+                <strong>Bénéfice DevOps</strong>
+                <p>En unifiant ces étapes, GitLab favorise la collaboration entre les équipes de développement (Dev) et d'opérations (Ops), ce qui est le cœur de la culture DevOps.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Key Concepts -->
+    <section class="gitlab-concepts-section">
+        <h2 id="gitlab-concepts">🧩 Concepts Clés de GitLab</h2>
+        <p class="lead">Découvrez les éléments essentiels qui composent la plateforme GitLab.</p>
+        
+        <div class="concepts-overview">
+            <div class="concept-card">
+                <div class="concept-icon">📁</div>
+                <h4>Repository</h4>
+                <p>Espace où le code du projet est stocké</p>
+            </div>
+            <div class="concept-card">
+                <div class="concept-icon">🌿</div>
+                <h4>Branches</h4>
+                <p>Copies indépendantes du code</p>
+            </div>
+            <div class="concept-card">
+                <div class="concept-icon">💾</div>
+                <h4>Commits</h4>
+                <p>Sauvegardes de changements</p>
+            </div>
+            <div class="concept-card">
+                <div class="concept-icon">🔀</div>
+                <h4>Merge Request</h4>
+                <p>Demande de fusion de branches</p>
+            </div>
+            <div class="concept-card">
+                <div class="concept-icon">🎫</div>
+                <h4>Issues</h4>
+                <p>Tâches et problèmes à résoudre</p>
+            </div>
+            <div class="concept-card">
+                <div class="concept-icon">🚀</div>
+                <h4>CI/CD</h4>
+                <p>Automatisation des déploiements</p>
+            </div>
+            <div class="concept-card">
+                <div class="concept-icon">📖</div>
+                <h4>Wiki</h4>
+                <p>Documentation interne du projet</p>
+            </div>
+            <div class="concept-card">
+                <div class="concept-icon">📋</div>
+                <h4>Boards</h4>
+                <p>Vue Kanban pour organiser les tâches</p>
+            </div>
+            <div class="concept-card">
+                <div class="concept-icon">👥</div>
+                <h4>Groups</h4>
+                <p>Organisation des projets et permissions</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: Repository Details -->
+    <section class="gitlab-repository-section">
+        <h2 id="gitlab-repository">📁 Repository (Repo)</h2>
+        
+        <div class="concept-detail">
+            <div class="detail-card">
+                <div class="detail-icon">📁</div>
+                <div class="detail-content">
+                    <h3>Qu'est-ce qu'un Repository ?</h3>
+                    <p>Espace où le code du projet est stocké. Comparable à un dossier versionné qui contient tous les fichiers de votre projet ainsi que l'historique complet des modifications.</p>
+                </div>
+            </div>
+        </div>
+
+        <h3>🔍 Caractéristiques d'un Repository</h3>
+        <div class="features-list">
+            <div class="feature-item">
+                <div class="feature-icon">💾</div>
+                <div class="feature-content">
+                    <h4>Stockage centralisé du code source</h4>
+                    <p>Tous les fichiers de votre projet sont stockés de manière sécurisée</p>
+                </div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">📚</div>
+                <div class="feature-content">
+                    <h4>Historique complet des modifications</h4>
+                    <p>Chaque changement est enregistré avec son auteur et sa date</p>
+                </div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">🌿</div>
+                <div class="feature-content">
+                    <h4>Gestion des branches et tags</h4>
+                    <p>Organisation du développement en branches parallèles</p>
+                </div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">🔐</div>
+                <div class="feature-content">
+                    <h4>Contrôle d'accès et permissions</h4>
+                    <p>Gestion fine des droits d'accès par utilisateur</p>
+                </div>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">🔗</div>
+                <div class="feature-content">
+                    <h4>Intégration avec les outils GitLab</h4>
+                    <p>Connexion automatique avec Issues, CI/CD, Wiki, etc.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 6: Branches Details -->
+    <section class="gitlab-branches-section">
+        <h2 id="gitlab-branches">🌿 Branches</h2>
+        
+        <div class="concept-detail">
+            <div class="detail-card">
+                <div class="detail-icon">🌿</div>
+                <div class="detail-content">
+                    <h3>Qu'est-ce qu'une Branche ?</h3>
+                    <p>Copies indépendantes du code permettant de travailler sans modifier la version principale. Chaque branche peut évoluer séparément.</p>
+                </div>
+            </div>
+        </div>
+
+        <h3>📝 Exemples de Noms de Branches</h3>
+        <div class="branch-examples">
+            <div class="branch-example good">
+                <div class="example-header">
+                    <span class="example-icon">✅</span>
+                    <h4>Bonnes Pratiques</h4>
+                </div>
+                <div class="example-items">
+                    <div class="branch-item">
+                        <code>main</code>
+                        <span class="branch-description">Branche principale stable</span>
+                    </div>
+                    <div class="branch-item">
+                        <code>feature/login-page</code>
+                        <span class="branch-description">Développement de la fonctionnalité de connexion</span>
+                    </div>
+                    <div class="branch-item">
+                        <code>bugfix/header-alignment</code>
+                        <span class="branch-description">Correction d'un bug dans l'en-tête</span>
+                    </div>
+                    <div class="branch-item">
+                        <code>release/v1.2.0</code>
+                        <span class="branch-description">Préparation de la version 1.2.0</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 7: Merge Requests -->
+    <section class="gitlab-mr-section">
+        <h2 id="gitlab-merge-requests">🔀 Merge Request (MR)</h2>
+        
+        <div class="concept-detail">
+            <div class="detail-card">
+                <div class="detail-icon">🔀</div>
+                <div class="detail-content">
+                    <h3>Qu'est-ce qu'une Merge Request ?</h3>
+                    <p>Demande de fusion d'une branche dans une autre incluant révision du code, commentaires et validation. C'est le cœur de la collaboration sur GitLab.</p>
+                </div>
+            </div>
+        </div>
+
+        <h3>🔄 Processus d'une Merge Request</h3>
+        <div class="process-flow">
+            <div class="process-step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h4>Création</h4>
+                    <p>Le développeur crée une MR depuis sa branche vers la branche cible</p>
+                    <div class="step-details">
+                        <ul>
+                            <li>Description détaillée des changements</li>
+                            <li>Assignation de reviewers</li>
+                            <li>Ajout de labels et milestones</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="process-step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h4>Révision</h4>
+                    <p>L'équipe examine le code et ajoute des commentaires</p>
+                    <div class="step-details">
+                        <ul>
+                            <li>Review ligne par ligne</li>
+                            <li>Suggestions d'améliorations</li>
+                            <li>Discussions sur l'implémentation</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="process-step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h4>Validation</h4>
+                    <p>Approbation et tests automatisés</p>
+                    <div class="step-details">
+                        <ul>
+                            <li>Approbation des reviewers</li>
+                            <li>Exécution des tests CI/CD</li>
+                            <li>Vérification des règles de qualité</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="process-step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h4>Fusion</h4>
+                    <p>Intégration du code dans la branche cible</p>
+                    <div class="step-details">
+                        <ul>
+                            <li>Fusion automatique ou manuelle</li>
+                            <li>Suppression de la branche source</li>
+                            <li>Notification à l'équipe</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 8: Issues -->
+    <section class="gitlab-issues-section">
+        <h2 id="gitlab-issues">🎫 Issues</h2>
+        
+        <div class="concept-detail">
+            <div class="detail-card">
+                <div class="detail-icon">🎫</div>
+                <div class="detail-content">
+                    <h3>Qu'est-ce qu'une Issue ?</h3>
+                    <p>Tâches permettant de décrire un bug, une idée ou une fonctionnalité avec possibilité d'assignation. C'est l'outil central de gestion de projet sur GitLab.</p>
+                </div>
+            </div>
+        </div>
+
+        <h3>📝 Types d'Issues</h3>
+        <div class="issue-types">
+            <div class="issue-type-card">
+                <div class="issue-type-header">
+                    <span class="issue-icon">🐛</span>
+                    <h4>Bug Report</h4>
+                </div>
+                <div class="issue-type-content">
+                    <p>Signaler un dysfonctionnement ou une erreur dans le code</p>
+                    <div class="issue-template">
+                        <strong>Template typique :</strong>
+                        <ul>
+                            <li>Description du problème</li>
+                            <li>Étapes pour reproduire</li>
+                            <li>Comportement attendu vs réel</li>
+                            <li>Environnement (OS, navigateur, etc.)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="issue-type-card">
+                <div class="issue-type-header">
+                    <span class="issue-icon">✨</span>
+                    <h4>Feature Request</h4>
+                </div>
+                <div class="issue-type-content">
+                    <p>Proposer une nouvelle fonctionnalité ou amélioration</p>
+                    <div class="issue-template">
+                        <strong>Template typique :</strong>
+                        <ul>
+                            <li>Description de la fonctionnalité</li>
+                            <li>Justification business</li>
+                            <li>Critères d'acceptation</li>
+                            <li>Maquettes ou wireframes</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="issue-type-card">
+                <div class="issue-type-header">
+                    <span class="issue-icon">📋</span>
+                    <h4>Task</h4>
+                </div>
+                <div class="issue-type-content">
+                    <p>Tâche générale à accomplir dans le projet</p>
+                    <div class="issue-template">
+                        <strong>Template typique :</strong>
+                        <ul>
+                            <li>Description de la tâche</li>
+                            <li>Objectifs à atteindre</li>
+                            <li>Ressources nécessaires</li>
+                            <li>Délai estimé</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 9: CI/CD -->
+    <section class="gitlab-cicd-section">
+        <h2 id="gitlab-cicd">🚀 CI/CD Pipelines</h2>
+        
+        <div class="concept-detail">
+            <div class="detail-card">
+                <div class="detail-icon">🚀</div>
+                <div class="detail-content">
+                    <h3>Qu'est-ce que CI/CD ?</h3>
+                    <p><strong>CI</strong> (Continuous Integration) + <strong>CD</strong> (Continuous Deployment) : Automatisation des tests, constructions et déploiements via le fichier <code>.gitlab-ci.yml</code>.</p>
+                </div>
+            </div>
+        </div>
+
+        <h3>⚙️ Étapes d'un Pipeline</h3>
+        <div class="pipeline-visualization">
+            <div class="pipeline-stage">
+                <div class="pipeline-icon">🧪</div>
+                <h4>Test</h4>
+                <p>Exécution des tests automatisés</p>
+                <div class="stage-details">
+                    <ul>
+                        <li>Tests unitaires</li>
+                        <li>Tests d'intégration</li>
+                        <li>Analyse de code</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="pipeline-arrow">→</div>
+            <div class="pipeline-stage">
+                <div class="pipeline-icon">🔨</div>
+                <h4>Build</h4>
+                <p>Construction de l'application</p>
+                <div class="stage-details">
+                    <ul>
+                        <li>Compilation du code</li>
+                        <li>Génération des artefacts</li>
+                        <li>Création des images Docker</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="pipeline-arrow">→</div>
+            <div class="pipeline-stage">
+                <div class="pipeline-icon">🚀</div>
+                <h4>Deploy</h4>
+                <p>Déploiement automatique</p>
+                <div class="stage-details">
+                    <ul>
+                        <li>Déploiement en staging</li>
+                        <li>Tests end-to-end</li>
+                        <li>Déploiement en production</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="pipeline-example">
+            <h4>💡 Exemple de fichier .gitlab-ci.yml</h4>
+            <div class="code-block">
+                <pre><code>stages:
+  - test
+  - build
+  - deploy
+
+test_job:
+  stage: test
+  script:
+    - npm install
+    - npm run test
+
+build_job:
+  stage: build
+  script:
+    - npm run build
+  artifacts:
+    paths:
+      - dist/
+
+deploy_job:
+  stage: deploy
+  script:
+    - ./deploy.sh
+  only:
+    - main</code></pre>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 10: Collaboration Tools -->
+    <section class="gitlab-collaboration-section">
+        <h2 id="gitlab-collaboration">👥 Outils de Collaboration</h2>
+        <p class="lead">GitLab propose plusieurs outils intégrés pour faciliter le travail en équipe.</p>
+        
+        <div class="collaboration-tools">
+            <div class="tool-card">
+                <div class="tool-header">
+                    <span class="tool-icon">📖</span>
+                    <h3>Wiki</h3>
+                </div>
+                <div class="tool-content">
+                    <p>Documentation interne pour expliquer le projet, ses fonctionnalités et son architecture.</p>
+                    <div class="tool-features">
+                        <h4>Fonctionnalités :</h4>
+                        <ul>
+                            <li>Pages en Markdown</li>
+                            <li>Historique des modifications</li>
+                            <li>Collaboration en temps réel</li>
+                            <li>Intégration avec le code</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tool-card">
+                <div class="tool-header">
+                    <span class="tool-icon">📋</span>
+                    <h3>Boards</h3>
+                </div>
+                <div class="tool-content">
+                    <p>Vue Kanban similaire à Trello, pour organiser les tâches en colonnes (To Do / Doing / Done).</p>
+                    <div class="tool-features">
+                        <h4>Fonctionnalités :</h4>
+                        <ul>
+                            <li>Colonnes personnalisables</li>
+                            <li>Glisser-déposer des issues</li>
+                            <li>Filtres et recherche</li>
+                            <li>Plusieurs boards par projet</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tool-card">
+                <div class="tool-header">
+                    <span class="tool-icon">👥</span>
+                    <h3>Groups & Permissions</h3>
+                </div>
+                <div class="tool-content">
+                    <p>Organisation des projets en groupes et sous-groupes avec contrôle des accès et rôles.</p>
+                    <div class="tool-features">
+                        <h4>Niveaux d'accès :</h4>
+                        <ul>
+                            <li><strong>Guest</strong> - Lecture seule</li>
+                            <li><strong>Reporter</strong> - Créer des issues</li>
+                            <li><strong>Developer</strong> - Push du code</li>
+                            <li><strong>Maintainer</strong> - Gestion du projet</li>
+                            <li><strong>Owner</strong> - Contrôle total</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 11: Glossary -->
+    <section class="gitlab-terms-section">
+        <h2 id="gitlab-terms">📚 Glossaire des Termes</h2>
+        <p class="lead">Maîtrisez le vocabulaire essentiel de GitLab avec ce glossaire complet.</p>
+        
+        <div class="glossary">
+            <div class="glossary-item">
+                <div class="term">Repo</div>
+                <div class="definition">Espace où le code est stocké avec son historique complet.</div>
+            </div>
+            <div class="glossary-item">
+                <div class="term">Branch</div>
+                <div class="definition">Version isolée du code pour travailler sans affecter la branche principale.</div>
+            </div>
+            <div class="glossary-item">
+                <div class="term">Commit</div>
+                <div class="definition">Enregistrement d'un changement avec message descriptif et identifiant unique.</div>
+            </div>
+            <div class="glossary-item">
+                <div class="term">Push</div>
+                <div class="definition">Envoyer les modifications locales vers le repository GitLab.</div>
+            </div>
+            <div class="glossary-item">
+                <div class="term">Pull/Fetch</div>
+                <div class="definition">Récupérer les modifications des autres développeurs depuis GitLab.</div>
+            </div>
+            <div class="glossary-item">
+                <div class="term">Merge Request</div>
+                <div class="definition">Proposition de fusion d'une branche dans une autre avec révision de code.</div>
+            </div>
+            <div class="glossary-item">
+                <div class="term">Pipeline</div>
+                <div class="definition">Suite d'étapes automatisées (tests, build, déploiement) définie dans .gitlab-ci.yml.</div>
+            </div>
+            <div class="glossary-item">
+                <div class="term">Issue</div>
+                <div class="definition">Tâche, bug ou fonctionnalité à traiter dans le projet.</div>
+            </div>
+            <div class="glossary-item">
+                <div class="term">CI/CD</div>
+                <div class="definition">Intégration Continue et Déploiement Continu pour automatiser le workflow.</div>
+            </div>
+        </div>
+
+        <div class="summary-card">
+            <div class="summary-icon">🎯</div>
+            <div class="summary-content">
+                <h3>Résumé en une phrase</h3>
+                <p><strong>GitLab est une plateforme complète pour stocker du code, collaborer avec une équipe, gérer des tâches et automatiser le déploiement.</strong></p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final Message -->
+    <div class="final-message">
+        <h3>🎯 Récapitulatif GitLab - Plateforme DevOps</h3>
+        <p>Vous avez maintenant une compréhension complète de :</p>
+        <ul>
+            <li>✅ <strong>Définition de GitLab</strong> - Plateforme DevOps complète vs Git simple</li>
+            <li>✅ <strong>Avantages clés</strong> - Collaboration, automatisation, sécurité</li>
+            <li>✅ <strong>Cycle DevOps</strong> - De la planification au monitoring</li>
+            <li>✅ <strong>Concepts essentiels</strong> - Repository, branches, MR, issues, CI/CD</li>
+            <li>✅ <strong>Outils de collaboration</strong> - Wiki, boards, permissions</li>
+            <li>✅ <strong>Terminologie</strong> - Vocabulaire professionnel maîtrisé</li>
+        </ul>
+        <p><strong>Prochaine étape :</strong> Mettre en pratique ces concepts dans vos projets ! 🚀</p>
+    </div>
+</section>
+
+<style>
+/* GitLab Platform specific styles */
+.gitlab-definition-section,
+.gitlab-why-section,
+.gitlab-devops-section,
+.gitlab-concepts-section,
+.gitlab-repository-section,
+.gitlab-branches-section,
+.gitlab-mr-section,
+.gitlab-issues-section,
+.gitlab-cicd-section,
+.gitlab-collaboration-section,
+.gitlab-terms-section {
+    margin: var(--spacing-2xl) 0;
+    padding: var(--spacing-xl);
+    background: var(--bg-secondary);
+    border-radius: 12px;
+    border-left: 4px solid #fc6d26; /* GitLab orange */
+}
+
+/* Comparison Grid */
+.comparison-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-xl);
+    margin: var(--spacing-lg) 0;
+}
+
+.comparison-item {
+    padding: var(--spacing-lg);
+    border-radius: 8px;
+    text-align: center;
+}
+
+.comparison-item.git {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border: 2px solid #6c757d;
+}
+
+.comparison-item.gitlab {
+    background: linear-gradient(135deg, #fdf2e9 0%, #fcf4ff 100%);
+    border: 2px solid #fc6d26;
+}
+
+.comparison-item h4 {
+    color: var(--primary);
+    margin-bottom: var(--spacing-md);
+    font-size: var(--font-size-xl);
+}
+
+.comparison-item p {
+    color: var(--text-secondary);
+    font-weight: bold;
+    margin-bottom: var(--spacing-sm);
+}
+
+.comparison-item ul {
+    text-align: left;
+    color: var(--text-secondary);
+}
+
+/* Components Grid */
+.components-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-lg);
+    margin: var(--spacing-xl) 0;
+}
+
+.component-card {
+    background: white;
+    border-radius: 12px;
+    padding: var(--spacing-lg);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    border-top: 4px solid #fc6d26;
+}
+
+.component-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(252, 109, 38, 0.2);
+}
+
+.component-icon {
+    font-size: var(--font-size-2xl);
+    margin-bottom: var(--spacing-md);
+    display: block;
+}
+
+.component-card h4 {
+    color: var(--primary);
+    margin-bottom: var(--spacing-sm);
+    font-size: var(--font-size-lg);
+}
+
+.component-card p {
+    color: var(--text-secondary);
+    font-size: var(--font-size-sm);
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* Benefits Grid */
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-xl);
+    margin: var(--spacing-xl) 0;
+}
+
+.benefit-card {
+    background: white;
+    border-radius: 12px;
+    padding: var(--spacing-xl);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.benefit-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #fc6d26, #fd7e14);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.benefit-card:hover::before {
+    transform: scaleX(1);
+}
+
+.benefit-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(252, 109, 38, 0.15);
+}
+
+.benefit-icon {
+    font-size: var(--font-size-2xl);
+    margin-bottom: var(--spacing-md);
+    display: block;
+}
+
+.benefit-card h3 {
+    color: var(--primary);
+    margin-bottom: var(--spacing-sm);
+    font-size: var(--font-size-lg);
+}
+
+.benefit-card > p {
+    color: var(--text-secondary);
+    font-weight: 500;
+    margin-bottom: var(--spacing-md);
+}
+
+.benefit-card ul {
+    color: var(--text-secondary);
+    font-size: var(--font-size-sm);
+    line-height: 1.6;
+}
+
+.benefit-card ul li {
+    margin: var(--spacing-xs) 0;
+}
+
+/* DevOps Cycle */
+.devops-cycle {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-lg);
+    margin: var(--spacing-xl) 0;
+}
+
+.devops-stage {
+    text-align: center;
+    padding: var(--spacing-lg);
+    background: linear-gradient(135deg, white 0%, #f8f9fa 100%);
+    border-radius: 12px;
+    border: 2px solid var(--border-light);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.devops-stage:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(252, 109, 38, 0.15);
+    border-color: #fc6d26;
+}
+
+.stage-icon {
+    font-size: var(--font-size-2xl);
+    margin-bottom: var(--spacing-sm);
+    display: block;
+}
+
+.devops-stage h4 {
+    color: var(--primary);
+    margin: var(--spacing-sm) 0;
+    font-size: var(--font-size-lg);
+}
+
+.devops-stage p {
+    color: var(--text-secondary);
+    font-size: var(--font-size-sm);
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* Concepts Overview */
+.concepts-overview {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-lg);
+    margin: var(--spacing-xl) 0;
+}
+
+/* Detail Cards */
+.concept-detail {
+    margin: var(--spacing-lg) 0;
+}
+
+.detail-card {
+    background: white;
+    border-radius: 12px;
+    padding: var(--spacing-xl);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    border-left: 6px solid #fc6d26;
+}
+
+.detail-card .detail-icon {
+    font-size: var(--font-size-2xl);
+    margin-bottom: var(--spacing-md);
+    display: block;
+}
+
+.detail-card h3 {
+    color: var(--primary);
+    margin-bottom: var(--spacing-md);
+}
+
+.detail-card p {
+    color: var(--text-secondary);
+    font-size: var(--font-size-base);
+    line-height: 1.6;
+}
+
+/* Features List */
+.features-list {
+    margin: var(--spacing-lg) 0;
+}
+
+.feature-item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-md);
+    margin: var(--spacing-lg) 0;
+    padding: var(--spacing-lg);
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.feature-icon {
+    font-size: var(--font-size-xl);
+    color: #fc6d26;
+    flex-shrink: 0;
+}
+
+.feature-content h4 {
+    color: var(--primary);
+    margin: 0 0 var(--spacing-xs) 0;
+}
+
+.feature-content p {
+    color: var(--text-secondary);
+    font-size: var(--font-size-sm);
+    margin: 0;
+}
+
+/* Branch Examples */
+.branch-examples {
+    margin: var(--spacing-lg) 0;
+}
+
+.branch-example {
+    background: white;
+    border-radius: 8px;
+    padding: var(--spacing-lg);
+    margin: var(--spacing-md) 0;
+    border-left: 4px solid #28a745;
+}
+
+.example-header {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+}
+
+.example-header h4 {
+    color: var(--primary);
+    margin: 0;
+}
+
+.example-items {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.branch-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-sm);
+    background: var(--bg-tertiary);
+    border-radius: 6px;
+}
+
+.branch-item code {
+    font-family: var(--font-family-mono);
+    font-weight: bold;
+    color: var(--primary);
+}
+
+.branch-description {
+    color: var(--text-secondary);
+    font-size: var(--font-size-sm);
+    font-style: italic;
+}
+
+/* Process Flow */
+.process-flow {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xl);
+    margin: var(--spacing-lg) 0;
+}
+
+.process-step {
+    background: white;
+    border-radius: 12px;
+    padding: var(--spacing-xl);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    position: relative;
+    border-left: 6px solid #fc6d26;
+}
+
+.step-number {
+    position: absolute;
+    top: -15px;
+    left: 30px;
+    background: #fc6d26;
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: var(--font-size-lg);
+}
+
+.step-content {
+    margin-top: var(--spacing-sm);
+}
+
+.step-content h4 {
+    color: var(--primary);
+    margin: 0 0 var(--spacing-sm) 0;
+    font-size: var(--font-size-lg);
+}
+
+.step-content > p {
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-md);
+    font-weight: 500;
+}
+
+.step-details ul {
+    color: var(--text-secondary);
+    font-size: var(--font-size-sm);
+}
+
+.step-details li {
+    margin: var(--spacing-xs) 0;
+}
+
+/* Issue Types */
+.issue-types {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-xl);
+    margin: var(--spacing-lg) 0;
+}
+
+.issue-type-card {
+    background: white;
+    border-radius: 12px;
+    padding: var(--spacing-xl);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+}
+
+.issue-type-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+}
+
+.issue-type-header {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+}
+
+.issue-icon {
+    font-size: var(--font-size-xl);
+}
+
+.issue-type-header h4 {
+    color: var(--primary);
+    margin: 0;
+}
+
+.issue-type-content p {
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-md);
+}
+
+.issue-template {
+    background: var(--bg-tertiary);
+    padding: var(--spacing-md);
+    border-radius: 6px;
+    border-left: 3px solid #fc6d26;
+}
+
+.issue-template strong {
+    color: var(--primary);
+}
+
+.issue-template ul {
+    margin: var(--spacing-sm) 0 0 0;
+    color: var(--text-secondary);
+    font-size: var(--font-size-sm);
+}
+
+/* Pipeline Visualization */
+.pipeline-visualization {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-lg);
+    margin: var(--spacing-xl) 0;
+    flex-wrap: wrap;
+}
+
+.pipeline-stage {
+    text-align: center;
+    padding: var(--spacing-xl);
+    background: linear-gradient(135deg, #fc6d26, #fd7e14);
+    color: white;
+    border-radius: 15px;
+    min-width: 180px;
+    box-shadow: 0 6px 20px rgba(252, 109, 38, 0.3);
+    flex: 1;
+    max-width: 250px;
+}
+
+.pipeline-icon {
+    font-size: var(--font-size-2xl);
+    margin-bottom: var(--spacing-sm);
+    display: block;
+}
+
+.pipeline-stage h4 {
+    margin: var(--spacing-sm) 0;
+    font-size: var(--font-size-lg);
+}
+
+.pipeline-stage > p {
+    font-size: var(--font-size-sm);
+    margin-bottom: var(--spacing-md);
+    opacity: 0.9;
+    font-weight: 500;
+}
+
+.pipeline-arrow {
+    font-size: var(--font-size-2xl);
+    color: #fc6d26;
+    font-weight: bold;
+    flex-shrink: 0;
+}
+
+.stage-details {
+    background: rgba(255,255,255,0.1);
+    border-radius: 6px;
+    padding: var(--spacing-sm);
+    margin-top: var(--spacing-sm);
+}
+
+.stage-details ul {
+    font-size: var(--font-size-xs);
+    margin: 0;
+    text-align: left;
+}
+
+.stage-details li {
+    margin: 2px 0;
+}
+
+/* Pipeline Example */
+.pipeline-example {
+    margin: var(--spacing-xl) 0;
+}
+
+.pipeline-example h4 {
+    color: var(--primary);
+    margin-bottom: var(--spacing-md);
+}
+
+.code-block {
+    background: var(--primary-dark);
+    color: white;
+    border-radius: 8px;
+    padding: var(--spacing-lg);
+    overflow-x: auto;
+    border-left: 4px solid #fc6d26;
+}
+
+.code-block pre {
+    margin: 0;
+    font-family: var(--font-family-mono);
+    font-size: var(--font-size-sm);
+    line-height: 1.5;
+}
+
+/* Collaboration Tools */
+.collaboration-tools {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: var(--spacing-xl);
+    margin: var(--spacing-xl) 0;
+}
+
+.tool-card {
+    background: white;
+    border-radius: 12px;
+    padding: var(--spacing-xl);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    border-top: 4px solid #fc6d26;
+}
+
+.tool-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(252, 109, 38, 0.15);
+}
+
+.tool-header {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+}
+
+.tool-icon {
+    font-size: var(--font-size-xl);
+    color: #fc6d26;
+}
+
+.tool-header h3 {
+    color: var(--primary);
+    margin: 0;
+}
+
+.tool-content p {
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-md);
+    line-height: 1.6;
+}
+
+.tool-features h4 {
+    color: var(--primary);
+    font-size: var(--font-size-base);
+    margin-bottom: var(--spacing-sm);
+}
+
+.tool-features ul {
+    color: var(--text-secondary);
+    font-size: var(--font-size-sm);
+}
+
+.tool-features li {
+    margin: var(--spacing-xs) 0;
+    line-height: 1.4;
+}
+
+.tool-features li strong {
+    color: var(--primary);
+}
+
+/* Glossary */
+.glossary {
+    display: grid;
+    gap: var(--spacing-md);
+    margin: var(--spacing-xl) 0;
+}
+
+.glossary-item {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: var(--spacing-lg);
+    padding: var(--spacing-lg);
+    background: white;
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.glossary-item:hover {
+    border-color: #fc6d26;
+    box-shadow: 0 2px 8px rgba(252, 109, 38, 0.1);
+}
+
+.term {
+    font-weight: bold;
+    color: white;
+    font-size: var(--font-size-base);
+    font-family: var(--font-family-mono);
+    background: linear-gradient(135deg, #fc6d26, #fd7e14);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: 6px;
+    text-align: center;
+}
+
+.definition {
+    color: var(--text-secondary);
+    font-size: var(--font-size-base);
+    line-height: 1.5;
+}
+
+/* Summary Card */
+.summary-card {
+    background: linear-gradient(135deg, #fdf2e9 0%, #fcf4ff 100%);
+    border: 2px solid #fc6d26;
+    border-radius: 12px;
+    padding: var(--spacing-xl);
+    margin: var(--spacing-xl) 0;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-lg);
+}
+
+.summary-icon {
+    font-size: var(--font-size-2xl);
+    color: #fc6d26;
+    flex-shrink: 0;
+}
+
+.summary-content h3 {
+    color: var(--primary);
+    margin: 0 0 var(--spacing-sm) 0;
+}
+
+.summary-content p {
+    color: var(--text-secondary);
+    margin: 0;
+    font-size: var(--font-size-base);
+    line-height: 1.5;
+}
+
+/* Final Message */
+.final-message {
+    background: linear-gradient(135deg, #fdf2e9 0%, #fcf4ff 100%);
+    border: 2px solid #fc6d26;
+    border-radius: 12px;
+    padding: var(--spacing-2xl);
+    margin: var(--spacing-2xl) 0;
+    text-align: center;
+    color: var(--primary);
+}
+
+.final-message h3 {
+    color: var(--primary);
+    margin-bottom: var(--spacing-lg);
+}
+
+.final-message ul {
+    text-align: left;
+    max-width: 700px;
+    margin: var(--spacing-lg) auto;
+}
+
+.final-message ul li {
+    margin: var(--spacing-sm) 0;
+}
+
+.final-message p {
+    color: var(--primary);
+    font-weight: 500;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .comparison-grid,
+    .components-grid,
+    .benefits-grid,
+    .devops-cycle,
+    .concepts-overview,
+    .issue-types,
+    .collaboration-tools {
+        grid-template-columns: 1fr;
+    }
+    
+    .pipeline-visualization {
+        flex-direction: column;
+    }
+    
+    .pipeline-arrow {
+        transform: rotate(90deg);
+    }
+    
+    .glossary-item {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+        text-align: center;
+    }
+    
+    .term {
+        justify-self: center;
+        max-width: 200px;
+    }
+    
+    .summary-card {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .branch-item {
+        flex-direction: column;
+        gap: var(--spacing-xs);
+        align-items: flex-start;
+    }
+}
+</style>

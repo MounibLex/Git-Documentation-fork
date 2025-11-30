@@ -1188,6 +1188,290 @@ code {
     height: 20px;
 }
 
+/* ========================================
+   GITLAB SECTIONS STYLES
+   ======================================== */
+
+/* DevOps Cycle */
+.devops-cycle {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-lg);
+    margin: var(--spacing-xl) 0;
+}
+
+.devops-stage {
+    text-align: center;
+    padding: var(--spacing-lg);
+    background: var(--bg-secondary);
+    border-radius: 12px;
+    border: 1px solid var(--border-light);
+    transition: all 0.3s ease;
+}
+
+.devops-stage:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border-color: var(--accent);
+}
+
+.stage-icon {
+    font-size: 2rem;
+    margin-bottom: var(--spacing-sm);
+}
+
+.devops-stage h4 {
+    color: var(--primary);
+    margin: var(--spacing-sm) 0;
+    font-size: var(--font-size-lg);
+}
+
+.devops-stage p {
+    color: var(--text-secondary);
+    font-size: var(--font-size-sm);
+    margin: 0;
+}
+
+/* Concepts Grid */
+.concepts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-lg);
+    margin: var(--spacing-xl) 0;
+}
+
+.concept-card {
+    background: linear-gradient(135deg, var(--bg-secondary), var(--bg-tertiary));
+    border: 1px solid var(--border-light);
+    border-radius: 12px;
+    padding: var(--spacing-lg);
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.concept-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-light));
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.concept-card:hover::before {
+    transform: scaleX(1);
+}
+
+.concept-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    border-color: var(--accent-light);
+}
+
+.concept-icon {
+    font-size: 2.5rem;
+    margin-bottom: var(--spacing-md);
+    display: block;
+}
+
+.concept-card h4 {
+    color: var(--primary);
+    font-size: var(--font-size-xl);
+    margin: var(--spacing-sm) 0;
+}
+
+.concept-card p {
+    color: var(--text-secondary);
+    font-size: var(--font-size-sm);
+    margin: 0;
+}
+
+/* Process Steps */
+.process-steps {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-lg);
+    margin: var(--spacing-xl) 0;
+    align-items: center;
+}
+
+.process-step {
+    flex: 1;
+    min-width: 200px;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    padding: var(--spacing-lg);
+    background: var(--bg-secondary);
+    border-radius: 12px;
+    border: 1px solid var(--border-light);
+}
+
+.step-number {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: var(--font-size-lg);
+    flex-shrink: 0;
+}
+
+.step-content h4 {
+    color: var(--primary);
+    margin: 0 0 var(--spacing-xs) 0;
+    font-size: var(--font-size-lg);
+}
+
+.step-content p {
+    color: var(--text-secondary);
+    margin: 0;
+    font-size: var(--font-size-sm);
+}
+
+/* Pipeline Flow */
+.pipeline-flow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-lg);
+    margin: var(--spacing-xl) 0;
+    flex-wrap: wrap;
+}
+
+.pipeline-stage {
+    text-align: center;
+    padding: var(--spacing-lg);
+    background: linear-gradient(135deg, var(--accent-light), var(--accent));
+    color: white;
+    border-radius: 15px;
+    min-width: 120px;
+    box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+}
+
+.pipeline-icon {
+    font-size: 2rem;
+    margin-bottom: var(--spacing-sm);
+}
+
+.pipeline-stage h4 {
+    margin: var(--spacing-sm) 0;
+    font-size: var(--font-size-lg);
+}
+
+.pipeline-stage p {
+    font-size: var(--font-size-sm);
+    margin: 0;
+    opacity: 0.9;
+}
+
+.pipeline-arrow {
+    font-size: 2rem;
+    color: var(--accent);
+    font-weight: bold;
+}
+
+/* Code Examples */
+.code-examples {
+    margin: var(--spacing-xl) 0;
+}
+
+.code-example {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-light);
+    border-left: 4px solid var(--accent);
+    padding: var(--spacing-md);
+    margin-bottom: var(--spacing-md);
+    border-radius: 0 8px 8px 0;
+    font-family: var(--font-family-mono);
+    font-size: var(--font-size-sm);
+}
+
+/* Glossary */
+.glossary {
+    display: grid;
+    gap: var(--spacing-md);
+    margin: var(--spacing-xl) 0;
+}
+
+.glossary-item {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: var(--spacing-lg);
+    padding: var(--spacing-lg);
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    align-items: center;
+}
+
+.term {
+    font-weight: bold;
+    color: var(--primary);
+    font-size: var(--font-size-lg);
+    font-family: var(--font-family-mono);
+    background: var(--accent-light);
+    color: white;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: 6px;
+    text-align: center;
+}
+
+.definition {
+    color: var(--text-secondary);
+    font-size: var(--font-size-base);
+}
+
+/* Responsive GitLab Sections */
+@media (max-width: 768px) {
+    .devops-cycle {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: var(--spacing-md);
+    }
+    
+    .concepts-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+    
+    .process-steps {
+        flex-direction: column;
+    }
+    
+    .process-step {
+        min-width: 100%;
+    }
+    
+    .pipeline-flow {
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
+    
+    .pipeline-arrow {
+        transform: rotate(90deg);
+    }
+    
+    .glossary-item {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+        text-align: center;
+    }
+    
+    .term {
+        justify-self: center;
+        max-width: 200px;
+    }
+}
+
 /* Responsive workflow section */
 @media (max-width: 768px) {
     .workflow-preview {

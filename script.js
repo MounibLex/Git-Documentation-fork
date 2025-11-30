@@ -331,7 +331,8 @@ document.addEventListener('DOMContentLoaded', function() {
         { id: 'basic-commands-placeholder', url: 'sections/basic-commands.html' },
         { id: 'branching-tutorial-placeholder', url: 'sections/branching-tutorial.html' },
         { id: 'git-conflicts-placeholder', url: 'sections/git-conflicts.html' },
-        { id: 'git-remote-platforms-placeholder', url: 'sections/git-remote-platforms.html' }
+        { id: 'git-remote-platforms-placeholder', url: 'sections/git-remote-platforms.html' },
+        { id: 'gitlab-platform-placeholder', url: 'sections/gitlab-platform.html' }
         
     ];
 
