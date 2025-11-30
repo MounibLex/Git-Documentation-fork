@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explorateur Gitflow Interactif</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Phosphor Icons pour les icônes (comme le bouton Explorer) -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        /* --- Styles Néon & Animations --- */
+        body { background-color: #0b0f19; font-family: 'Inter', sans-serif; }
+
+        .diagram-container {
+            background: 
+                linear-gradient(rgba(15, 23, 42, 0.85), rgba(30, 41, 59, 0.85)),
+                url('images/tech-background.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Lignes et Noeuds SVG */
+        .git-line {
+            fill: none;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            transition: all 0.4s ease;
+            opacity: 0.5;
+        }
+        
+        .git-node {
+            stroke-width: 0;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.5));
+        }
+
+        /* Couleurs des branches */
+        :root {
+            --color-main: #3b82f6;    /* Bleu */
+            --color-develop: #06b6d4; /* Cyan */
+            --color-feature: #8b5cf6; /* Violet */
+            --color-release: #22c55e; /* Vert */
+            --color-hotfix: #f43f5e;  /* Rouge */
+        }
+
+        /* --- États Actifs (Hover/Click) --- */
+        
+        /* Quand un groupe est actif */
+        .g-group.active .git-line {
+            opacity: 1;
+            stroke-width: 4;
+            filter: drop-shadow(0 0 8px currentColor);
+        }
+
+        .g-group.active .git-node {
+            transform: scale(1.3);
+            stroke: #fff;
+            stroke-width: 2px;
+            filter: drop-shadow(0 0 15px currentColor);
+            transform-box: fill-box;
+            transform-origin: center;
+        }
+
+        /* Accordéon */
+        .accordion-item {
+            border: 1px solid #1e293b;
+            background-color: #111827;
+            transition: all 0.3s ease;
+        }
+
+        .accordion-item.active {
+            background-color: #1e293b;
+            border-color: #3b82f6; /* Bordure bleue active */
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out, opacity 0.3s ease;
+            opacity: 0;
+        }
+
+        .accordion-item.active .accordion-content {
+            max-height: 200px; /* Assez grand pour le texte */
+            opacity: 1;
+        }
+
+        .chevron {
+            transition: transform 0.3s ease;
+        }
+        .accordion-item.active .chevron {
+            transform: rotate(180deg);
+        }
+
+        /* Return Button Styles */
+        .return-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(52, 152, 219, 0.9);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+            z-index: 1000;
+        }
+
+        .return-button:hover {
+            background: rgba(41, 128, 185, 0.95);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
+        }
+
+        .return-button svg {
+            width: 16px;
+            height: 16px;
+        }
+
+    </style>
+</head>
+<body class="text-slate-300 min-h-screen flex items-center justify-center p-4">
+
+    <!-- Return Button -->
+    <a href="index.html" class="return-button">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M19 12H5M12 5L5 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Retour à la documentation
+    </a>
+
+    <!-- Container Principal (Card) -->
+    <div class="max-w-6xl w-full bg-slate-950 rounded-2xl shadow-2xl border border-slate-800 flex flex-col lg:flex-row overflow-hidden" style="min-height: 600px;">
+        
+        <!-- GAUCHE : VISUALISATION (L'Image Interactive) -->
+        <div class="lg:w-2/3 diagram-container relative flex items-center justify-center bg-slate-900">
+            
+            <!-- Décoration de fond (Grille) -->
+            <div class="absolute inset-0 opacity-20" 
+                 style="background-image: radial-gradient(#64748b 1px, transparent 1px); background-size: 30px 30px;">
+            </div>
+
+            <!-- SVG Diagram -->
+            <svg viewBox="0 0 800 500" class="w-full h-full z-10 p-8">
+                <defs>
+                    <filter id="glow">
+                        <feGaussianBlur stdDeviation="2.5" result="coloredBlur"/>
+                        <feMerge>
+                            <feMergeNode in="coloredBlur"/>
+                            <feMergeNode in="SourceGraphic"/>
+                        </feMerge>
+                    </filter>
+                </defs>
+
+                <!-- 1. MAIN BRANCH (Ligne du haut) -->
+                <g class="g-group" data-target="main" style="color: var(--color-main);">
+                    <path d="M 50 100 L 750 100" class="git-line" stroke="currentColor" />
+                    <text x="50" y="80" fill="currentColor" font-weight="bold" font-size="14">MAIN</text>
+                    
+                    <!-- Nodes -->
+                    <rect x="180" y="85" width="30" height="30" rx="4" transform="rotate(45 195 100)" class="git-node" fill="currentColor" />
+                    <rect x="580" y="85" width="30" height="30" rx="4" transform="rotate(45 595 100)" class="git-node" fill="currentColor" />
+                    <rect x="720" y="85" width="30" height="30" rx="4" transform="rotate(45 735 100)" class="git-node" fill="currentColor" />
+                </g>
+
+                <!-- 2. DEVELOP BRANCH (Ligne du milieu) -->
+                <g class="g-group" data-target="develop" style="color: var(--color-develop);">
+                    <path d="M 50 250 L 750 250" class="git-line" stroke="currentColor" />
+                    <!-- Lien depuis Main -->
+                    <path d="M 195 100 L 195 250" class="git-line" stroke="currentColor" stroke-dasharray="6,4" />
+                    <text x="50" y="230" fill="currentColor" font-weight="bold" font-size="14">DEVELOP</text>
+
+                    <!-- Nodes -->
+                    <rect x="180" y="235" width="30" height="30" rx="4" transform="rotate(45 195 250)" class="git-node" fill="currentColor" />
+                    <rect x="300" y="235" width="30" height="30" rx="4" transform="rotate(45 315 250)" class="git-node" fill="currentColor" />
+                    <rect x="450" y="235" width="30" height="30" rx="4" transform="rotate(45 465 250)" class="git-node" fill="currentColor" />
+                </g>
+
+                <!-- 3. FEATURE BRANCHES (Lignes du bas) -->
+                <g class="g-group" data-target="feature" style="color: var(--color-feature);">
+                    <!-- Feature 1 -->
+                    <path d="M 315 250 C 315 320, 330 380, 360 380 L 380 380 C 410 380, 435 320, 435 250" 
+                          class="git-line" stroke="currentColor" fill="none" />
+                    <!-- Feature 2 -->
+                    <path d="M 195 250 C 195 350, 220 420, 260 420 L 270 420 C 300 420, 315 300, 315 250" 
+                          class="git-line" stroke="currentColor" fill="none" opacity="0.3" />
+
+                    <text x="340" y="410" fill="currentColor" font-size="12">Feature</text>
+
+                    <!-- Nodes -->
+                    <rect x="360" y="365" width="30" height="30" rx="4" transform="rotate(45 375 380)" class="git-node" fill="currentColor" />
+                    <rect x="250" y="405" width="30" height="30" rx="4" transform="rotate(45 265 420)" class="git-node" fill="currentColor" />
+                </g>
+
+                <!-- 4. RELEASE BRANCH (Entre Main et Dev) -->
+                <g class="g-group" data-target="release" style="color: var(--color-release);">
+                    <path d="M 465 250 C 480 170, 520 170, 550 170 L 560 170 C 580 170, 595 120, 595 100" 
+                          class="git-line" stroke="currentColor" fill="none" />
+                    
+                    <text x="500" y="160" fill="currentColor" font-size="12">Release v1.0</text>
+
+                    <!-- Node -->
+                    <rect x="535" y="155" width="30" height="30" rx="4" transform="rotate(45 550 170)" class="git-node" fill="currentColor" />
+                </g>
+
+                <!-- 5. HOTFIX (Tout en haut) -->
+                <g class="g-group" data-target="hotfix" style="color: var(--color-hotfix);">
+                    <path d="M 595 100 C 610 40, 660 40, 690 40 L 700 40 C 720 40, 735 80, 735 100" 
+                          class="git-line" stroke="currentColor" fill="none" />
+                    <!-- Retour vers Develop -->
+                    <path d="M 735 100 L 735 250" class="git-line" stroke="currentColor" stroke-dasharray="4,4" />
+
+                    <text x="640" y="30" fill="currentColor" font-size="12">Hotfix</text>
+
+                    <!-- Nodes -->
+                    <rect x="675" y="25" width="30" height="30" rx="4" transform="rotate(45 690 40)" class="git-node" fill="currentColor" />
+                </g>
+            </svg>
+        </div>
+
+        <!-- DROITE : ACCORDÉON (Contenu) -->
+        <div class="lg:w-1/3 bg-slate-950 flex flex-col border-l border-slate-800">
+            <!-- Header -->
+            <div class="p-6 border-b border-slate-800">
+                <h2 class="text-xl font-bold text-white">Workflow Gitflow</h2>
+            </div>
+
+            <!-- Liste Accordéon -->
+            <div class="flex-1 overflow-y-auto" id="accordion-container">
+                
+                <!-- 1. Vue d'ensemble -->
+                <div class="accordion-item border-b border-slate-800" data-target="overview">
+                    <button class="w-full text-left p-4 flex items-center justify-between focus:outline-none group">
+                        <span class="font-semibold text-slate-200 group-hover:text-white">Vue d'ensemble</span>
+                        <i class="ph ph-caret-down text-slate-500 chevron"></i>
+                    </button>
+                    <div class="accordion-content px-4 pb-4">
+                        <p class="text-sm text-slate-400">
+                            Le Gitflow est un modèle de branchement strict conçu pour la gestion des releases de projets. Il définit un rôle très précis pour chaque branche.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 2. Main Branch -->
+                <div class="accordion-item border-b border-slate-800" data-target="main">
+                    <button class="w-full text-left p-4 flex items-center justify-between focus:outline-none group">
+                        <div class="flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-blue-500"></span>
+                            <span class="font-semibold text-slate-200">Branche Principale (Main)</span>
+                        </div>
+                        <i class="ph ph-caret-down text-slate-500 chevron"></i>
+                    </button>
+                    <div class="accordion-content px-4 pb-4">
+                        <p class="text-sm text-slate-400">
+                            La branche sacrée. Elle ne contient que du code <strong>prêt pour la production</strong>. On n'y commit jamais directement. Elle ne reçoit que des fusions provenant de <em>Release</em> ou <em>Hotfix</em>.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 3. Develop Branch -->
+                <div class="accordion-item border-b border-slate-800" data-target="develop">
+                    <button class="w-full text-left p-4 flex items-center justify-between focus:outline-none group">
+                        <div class="flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-cyan-500"></span>
+                            <span class="font-semibold text-slate-200">Branche de Développement</span>
+                        </div>
+                        <i class="ph ph-caret-down text-slate-500 chevron"></i>
+                    </button>
+                    <div class="accordion-content px-4 pb-4">
+                        <p class="text-sm text-slate-400">
+                            C'est la colonne vertébrale du projet. C'est ici que le code des fonctionnalités est rassemblé. Quand <em>Develop</em> est stable, on prépare une <em>Release</em>.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 4. Feature Branches -->
+                <div class="accordion-item border-b border-slate-800" data-target="feature">
+                    <button class="w-full text-left p-4 flex items-center justify-between focus:outline-none group">
+                        <div class="flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-purple-500"></span>
+                            <span class="font-semibold text-slate-200">Branches Fonctionnalités</span>
+                        </div>
+                        <i class="ph ph-caret-down text-slate-500 chevron"></i>
+                    </button>
+                    <div class="accordion-content px-4 pb-4">
+                        <p class="text-sm text-slate-400">
+                            Utilisées pour développer de nouvelles features. Elles partent de <em>Develop</em> et reviennent dans <em>Develop</em> via une Merge Request.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 5. Release Branch -->
+                <div class="accordion-item border-b border-slate-800" data-target="release">
+                    <button class="w-full text-left p-4 flex items-center justify-between focus:outline-none group">
+                        <div class="flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-green-500"></span>
+                            <span class="font-semibold text-slate-200">Branche de Release</span>
+                        </div>
+                        <i class="ph ph-caret-down text-slate-500 chevron"></i>
+                    </button>
+                    <div class="accordion-content px-4 pb-4">
+                        <p class="text-sm text-slate-400">
+                            Branche temporaire pour finaliser une version (v1.0). On y corrige les derniers bugs mineurs avant de fusionner vers <em>Main</em> et <em>Develop</em>.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 6. Hotfix -->
+                <div class="accordion-item border-b border-slate-800" data-target="hotfix">
+                    <button class="w-full text-left p-4 flex items-center justify-between focus:outline-none group">
+                        <div class="flex items-center gap-2">
+                            <span class="w-2 h-2 rounded-full bg-rose-500"></span>
+                            <span class="font-semibold text-slate-200">Correctif (Hotfix)</span>
+                        </div>
+                        <i class="ph ph-caret-down text-slate-500 chevron"></i>
+                    </button>
+                    <div class="accordion-content px-4 pb-4">
+                        <p class="text-sm text-slate-400">
+                            La seule branche qui peut partir de <em>Main</em>. Utilisée pour réparer un bug critique en production immédiatement.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Script de Logique (Interaction Bidirectionnelle) -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const svgGroups = document.querySelectorAll('.g-group');
+            const accordions = document.querySelectorAll('.accordion-item');
+            let clickedSection = null; // Track which section was clicked
+
+            // 1. Fonction pour activer une section
+            function activateSection(targetName) {
+                // Reset tout
+                svgGroups.forEach(g => g.classList.remove('active'));
+                accordions.forEach(acc => acc.classList.remove('active'));
+
+                // Si pas de cible, on arrête (ex: souris sort)
+                if(!targetName) return;
+
+                // Active le groupe SVG correspondant
+                const activeSvg = document.querySelector(`.g-group[data-target="${targetName}"]`);
+                if(activeSvg) activeSvg.classList.add('active');
+
+                // Active l'accordéon correspondant
+                const activeAcc = document.querySelector(`.accordion-item[data-target="${targetName}"]`);
+                if(activeAcc) {
+                    activeAcc.classList.add('active');
+                    // Scroll automatique doux vers l'item si nécessaire
+                    activeAcc.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }
+            }
+
+            // 2. Events sur le SVG (Hover only if nothing clicked)
+            svgGroups.forEach(group => {
+                group.addEventListener('mouseenter', () => {
+                    if (!clickedSection) {
+                        const target = group.getAttribute('data-target');
+                        activateSection(target);
+                    }
+                });
+
+                // Click to lock the selection
+                group.addEventListener('click', () => {
+                    const target = group.getAttribute('data-target');
+                    clickedSection = target;
+                    activateSection(target);
+                });
+            });
+
+            // 3. Events sur l'Accordéon
+            accordions.forEach(acc => {
+                // Click pour verrouiller la sélection
+                acc.addEventListener('click', () => {
+                    const target = acc.getAttribute('data-target');
+                    clickedSection = target;
+                    activateSection(target);
+                });
+
+                // Hover seulement si rien n'est cliqué
+                acc.addEventListener('mouseenter', () => {
+                    if (!clickedSection) {
+                        const target = acc.getAttribute('data-target');
+                        activateSection(target);
+                    }
+                });
+            });
+
+            // Double-click anywhere to reset (unlock)
+            document.addEventListener('dblclick', () => {
+                clickedSection = null;
+                activateSection('overview');
+            });
+
+            // Active "Overview" par défaut au chargement
+            setTimeout(() => {
+                clickedSection = null;
+                activateSection('overview');
+            }, 500);
+        });
+    </script>
+</body>
+</html>

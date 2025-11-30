@@ -291,6 +291,20 @@
                     </a>
                 </div>
             </div>
+
+            <div class="nav-section collapsed">
+                <div class="nav-section-header" onclick="toggleNavSection(this)">
+                    <span class="nav-section-icon">🌊</span>
+                    <span class="nav-section-title">Workflow Gitflow Interactif</span>
+                    <span class="nav-section-toggle">▼</span>
+                </div>
+                <div class="nav-section-content">
+                    <a href="#workflow-gitflow" class="nav-link sub-link">
+                        <span class="nav-icon">🎯</span>
+                        <span>Visualisation Interactive</span>
+                    </a>
+                </div>
+            </div>
         </nav>
     </aside>
 
@@ -972,6 +986,75 @@
             <div id="branching-tutorial-placeholder"></div>
             <div id="git-conflicts-placeholder"></div>
             <div id="git-remote-platforms-placeholder"></div>
+
+            
+            <!-- Workflow Gitflow Section -->
+            <section id="workflow-gitflow" class="doc-section">
+                <h1 class="page-title">Workflow Gitflow Interactif</h1>
+                <p class="page-subtitle">Découvrez le modèle de branchement Gitflow à travers une visualisation interactive</p>
+                
+                <div class="alert alert-info">
+                    <div class="alert-icon">🌊</div>
+                    <div class="alert-content">
+                        <strong>Expérience Interactive :</strong>
+                        <p>Explorez le workflow Gitflow à travers un diagramme interactif qui vous permettra de comprendre les relations entre les différentes branches et les étapes du processus de développement.</p>
+                    </div>
+                </div>
+
+                <div class="workflow-preview">
+                    <img src="/images/workflow.png" alt="Aperçu du Workflow Gitflow Interactif" class="workflow-image">
+                    
+                    <div class="workflow-actions">
+                        <a href="workflow-git.html" class="btn btn-primary btn-large" >
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M15 3H21V9M21 3L12 12M9 3H5C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21H19C20.1046 21 21 20.1046 21 19V15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            Explorer l'interface interactive
+                        </a>
+                    </div>
+                </div>
+
+                <h3>Que vous allez apprendre</h3>
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <div class="feature-icon">🌳</div>
+                        <div class="feature-content">
+                            <h4>Structure des branches</h4>
+                            <p>Comprenez le rôle de chaque branche : main, develop, feature, release et hotfix</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-item">
+                        <div class="feature-icon">🔄</div>
+                        <div class="feature-content">
+                            <h4>Flux de développement</h4>
+                            <p>Visualisez comment le code circule entre les différentes branches</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-item">
+                        <div class="feature-icon">✨</div>
+                        <div class="feature-content">
+                            <h4>Bonnes pratiques</h4>
+                            <p>Découvrez les meilleures pratiques pour organiser votre workflow Git</p>
+                        </div>
+                    </div>
+
+                    <div class="feature-item">
+                        <div class="feature-icon">🎯</div>
+                        <div class="feature-content">
+                            <h4>Interactivité</h4>
+                            <p>Cliquez sur les éléments du diagramme pour explorer en détail</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="callout">
+                    <strong>Conseil Pratique</strong>
+                    <p>Le Gitflow est particulièrement adapté aux projets avec des cycles de release réguliers et des équipes structurées. Pour des projets plus agiles, vous pourriez préférer GitHub Flow ou GitLab Flow.</p>
+                </div>
+            </section>
+
         </div>
     </main>
 
